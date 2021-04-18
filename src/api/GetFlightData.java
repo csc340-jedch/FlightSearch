@@ -127,4 +127,13 @@ public class GetFlightData implements FlightDataInterface{
         return input.getJSONArray("Carriers");
     }
 
+    public Flight[] getFlights(String _departureDate, String _originAirport) throws JSONException {
+        // TODO: Implement this to get valid flight information
+
+        Flight flight1 = new Flight(1, "B", 300 );
+        Flight flight2 = new Flight(2, "D", 450);
+        Flight[] flights = new Flight[]{ flight1, flight2 };
+        return flights;
+    }
+
 }

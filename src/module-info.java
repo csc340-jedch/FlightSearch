@@ -9,4 +9,5 @@ module FlightSearch {
     requires org.json;
     requires java.sql;
     opens ui;
+    opens api;
 }

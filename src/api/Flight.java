@@ -1,4 +1,4 @@
-package ui;
+package api;
 
 public class Flight {
     private int carrierID;
