@@ -1,4 +1,4 @@
-module FlightGUI {
+module FlightSearch {
     requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;

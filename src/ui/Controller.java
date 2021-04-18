@@ -31,7 +31,7 @@ public class Controller {
         anchorPane.getChildren().removeAll();
 
         // Add new pane
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/ui/fxml/" + fxmlLoad + ".ui.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/ui/fxml/" + fxmlLoad + ".fxml"));
         anchorPane.getChildren().setAll(pane);
 
         System.out.println("Changing scene to: " + fxmlLoad);

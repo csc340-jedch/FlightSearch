@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Login">
+   <children>
+      <GridPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TextField fx:id="usernameTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="148.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordField" maxWidth="-Infinity" onKeyPressed="#passwordKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="64.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="355.0" minWidth="10.0" prefWidth="355.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClick" text="Login" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Courier New Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <CheckBox fx:id="rememberMeCheckBox" mnemonicParsing="false" text="Remember Me" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Courier New Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets top="50.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonClick" text="Register" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Courier New Bold" size="12.0" />
+                     </font></Button>
+               </children>
+            </GridPane>
+            <Label text="Account Login">
+               <font>
+                  <Font name="Courier New Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label text="Username:" GridPane.rowIndex="1" />
+            <Label text="Password:" GridPane.rowIndex="2" />
+            <ImageView fitHeight="113.0" fitWidth="395.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../res/flight-banner.jpg" />
+               </image>
+            </ImageView>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="181.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="434.0" minWidth="10.0" prefWidth="419.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="134.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="133.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>
