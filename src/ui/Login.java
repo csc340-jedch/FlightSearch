@@ -16,6 +16,7 @@ public class Login {
     public CheckBox rememberMeCheckBox;
     public TextField usernameTextField;
     public PasswordField passwordField;
+    public Button registerButton;
 
     public Login() {
         System.out.println("Started Login");
@@ -44,11 +45,18 @@ public class Login {
     }
 
     private void login() throws IOException {
+        // TODO: Check if login credentials are valid from database
+
         if (rememberMeCheckBox.isSelected()) {
             ConfigManager.writeConfig(usernameTextField.getText(), passwordField.getText());
         }
 
         Controller controller = Controller.getInstance();
         controller.changePane("menu");
+    }
+
+    public void registerButtonClick(ActionEvent actionEvent) throws IOException {
+        Controller controller = Controller.getInstance();
+        controller.changePane("register");
     }
 }

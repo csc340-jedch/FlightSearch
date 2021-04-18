@@ -34,9 +34,13 @@
                         <Font name="Courier New Bold" size="12.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets top="5.0" />
+                        <Insets top="50.0" />
                      </GridPane.margin>
                   </CheckBox>
+                  <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerButtonClick" text="Register" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Courier New Bold" size="12.0" />
+                     </font></Button>
                </children>
             </GridPane>
             <Label text="Account Login">
