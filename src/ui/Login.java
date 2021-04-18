@@ -1,5 +1,7 @@
 package ui;
 
+import accounts.AccountLogin;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,14 +47,22 @@ public class Login {
     }
 
     private void login() throws IOException {
-        // TODO: Check if login credentials are valid from database
+        String username = usernameTextField.getText();
+        String password = passwordField.getText();
 
-        if (rememberMeCheckBox.isSelected()) {
-            ConfigManager.writeConfig(usernameTextField.getText(), passwordField.getText());
+        if (AccountLogin.credentialsAreValid(username, password)) {
+            // Username and password is correct
+
+            if (rememberMeCheckBox.isSelected()) {
+                ConfigManager.writeConfig(username, password);
+            }
+
+            Controller controller = Controller.getInstance();
+            controller.changePane("menu");
+        } else {
+            // Username and password is incorrect
+            Controller.showMessage("Incorrect login credentials provided.", "Login Failed");
         }
-
-        Controller controller = Controller.getInstance();
-        controller.changePane("menu");
     }
 
     public void registerButtonClick(ActionEvent actionEvent) throws IOException {
