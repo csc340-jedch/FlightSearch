@@ -16,7 +16,7 @@ public class Main extends Application {
         }
 
         // Load the main parent window (This will be controlled by the Window class)
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/window.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ui/fxml/window.fxml"));
         primaryStage.setTitle("Flight GUI");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 600, 400));

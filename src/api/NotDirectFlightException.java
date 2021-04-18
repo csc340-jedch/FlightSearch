@@ -1,4 +1,4 @@
-package Flights;
+package api;
 
 
 public class NotDirectFlightException extends Exception {

@@ -1,4 +1,4 @@
-package Flights;
+package api;
 
 import org.json.JSONException;
 
