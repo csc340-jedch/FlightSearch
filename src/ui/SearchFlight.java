@@ -11,7 +11,6 @@ import java.io.IOException;
 public class SearchFlight {
     public Button searchFlight;
 
-    public ComboBox dateComboBox;
     public TableView flightTable;
     public TableColumn destColumn;
     public TableColumn dateColumn;
@@ -21,10 +20,11 @@ public class SearchFlight {
     public TableColumn carrierIDColumn;
     public TableColumn carrierColumn;
     public TableColumn priceColumnColumn;
+    public DatePicker flightDatePicker;
 
     public void searchButtonClicked(ActionEvent actionEvent) {
-        String date = (String)dateComboBox.getValue();
-        String airport = (String)airportComboBox.getValue();
+        String date = flightDatePicker.getValue().toString();
+        String airport = airportComboBox.getValue().toString();
 
 
         /*

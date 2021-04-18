@@ -20,11 +20,6 @@
                   <Insets left="3.0" top="3.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="dateComboBox" prefWidth="150.0" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets top="3.0" />
-               </GridPane.margin>
-            </ComboBox>
             <Label text="Nearest Airport:" GridPane.rowIndex="1">
                <font>
                   <Font name="Courier New Bold" size="14.0" />
@@ -56,6 +51,7 @@
                </GridPane.margin>
             </Button>
             <Button fx:id="saveFlightButton" mnemonicParsing="false" onAction="#saveFlightClicked" text="Save Flight" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <DatePicker fx:id="flightDatePicker" GridPane.columnIndex="1" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="173.0" />
