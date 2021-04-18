@@ -17,7 +17,7 @@ public class Main extends Application {
 
         // Load the main parent window (This will be controlled by the Window class)
         Parent root = FXMLLoader.load(getClass().getResource("/ui/fxml/window.fxml"));
-        primaryStage.setTitle("Flight GUI");
+        primaryStage.setTitle("Flight Search for Displaced LGBTQ+ Minors");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
