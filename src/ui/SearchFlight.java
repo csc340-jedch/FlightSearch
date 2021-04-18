@@ -2,6 +2,7 @@ package ui;
 
 import api.Flight;
 import api.GetFlightData;
+import db.FlightInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -70,6 +71,18 @@ public class SearchFlight {
             Controller.showMessage("Please select a flight.", "Flight not selected");
         } else {
             Controller.showMessage("Your flight has been saved.", "Flight saved");
+
+            // Get the selected flight information
+            ObservableList list = flightTable.getSelectionModel().getSelectedCells();
+            TablePosition tablePosition = (TablePosition)list.get(0);
+            String carrierId = (String)tablePosition.getTableColumn().getCellData("cost");
+
+            // Get the username
+            String username = Controller.getUsername();
+
+            // Save the flight
+            FlightInformation.saveFlight(username, carrierId);
+            System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
         }
         System.out.println("Selected flight: " + selectedIndex);
     }

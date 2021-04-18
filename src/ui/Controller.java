@@ -9,6 +9,7 @@ import java.io.IOException;
 public class Controller {
     private AnchorPane anchorPane;
     private final static Controller INSTANCE = new Controller();
+    private static String username;
 
     private Controller() {
         System.out.println("Loaded ui.Controller");
@@ -40,6 +41,14 @@ public class Controller {
     public static void showMessage(String infoMessage, String titleBar)
     {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void setUsername(String username) {
+        Controller.username = username;
+    }
+
+    public static String getUsername() {
+        return username;
     }
 
 }

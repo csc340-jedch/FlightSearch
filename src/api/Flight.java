@@ -1,9 +1,9 @@
 package api;
 
 public class Flight {
-    private int carrierID;
-    private String carrier;
-    private int price;
+    private final int carrierID;
+    private final String carrier;
+    private final int price;
 
     public Flight(int carrierID, String carrier, int price) {
         this.carrierID = carrierID;
