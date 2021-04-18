@@ -29,7 +29,7 @@
                </GridPane.margin>
             </Label>
             <ComboBox fx:id="airportComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="api:" GridPane.rowIndex="2">
+            <Label text="Available Flights:" GridPane.rowIndex="2">
                <font>
                   <Font name="Courier New Bold" size="14.0" />
                </font>

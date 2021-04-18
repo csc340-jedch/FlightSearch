@@ -3,6 +3,7 @@ package ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -21,6 +22,13 @@ public class SearchFlight {
     public TableColumn carrierColumn;
     public TableColumn priceColumnColumn;
     public DatePicker flightDatePicker;
+
+    @FXML
+    protected void initialize() {
+        // Populate the departure airport combobox
+        String[] airports = { "RDU" };
+        airportComboBox.getItems().addAll(airports);
+    }
 
     public void searchButtonClicked(ActionEvent actionEvent) {
         String date = flightDatePicker.getValue().toString();
