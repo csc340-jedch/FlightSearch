@@ -5,4 +5,4 @@
 
 [Database Code](https://github.com/csc340-jedch/FlightSearch/tree/main/src/db)
 
-[GUI Code](https://github.com/csc340-jedch/FlightSearch/tree/main/src/gui)
+[User Interface Code](https://github.com/csc340-jedch/FlightSearch/tree/main/src/ui)
