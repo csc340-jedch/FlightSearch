@@ -3,6 +3,7 @@ package ui;
 import accounts.AccountLogin;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -15,6 +16,10 @@ public class Register {
     public TextField usernameTextField;
     public TextField emailTextField;
     public PasswordField passwordField;
+    public TextField phoneNumberTextField;
+    public TextField firstNameTextField;
+    public TextField lastNameTextField;
+    public DatePicker birthDatePicker;
 
     public void exitButtonClick(ActionEvent actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
@@ -27,6 +32,16 @@ public class Register {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String email = emailTextField.getText();
+        String phoneNumber = phoneNumberTextField.getText();
+
+        String firstName = firstNameTextField.getText();
+        String lastName = lastNameTextField.getText();
+        String birthDate = birthDatePicker.getValue().toString();
+
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty()) {
+            Controller.showMessage("Please fill out all fields", "Fill out all information fields");
+            return;
+        }
 
         // Check if username already exists
         if (AccountLogin.usernameExists(username)) {

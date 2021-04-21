@@ -1,7 +1,6 @@
 package ui;
 
 import api.Flight;
-import api.GetFlightData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
