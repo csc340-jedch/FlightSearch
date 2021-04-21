@@ -10,13 +10,23 @@ import java.net.URL;
 
 public class GetFlightData implements FlightDataInterface{
 
-    public static JSONObject findFlightInformation(String _departureDate, String _originAirport) {
+    private static String departureDate;
+    private static String originAirport;
 
+    //Constructor
+    public GetFlightData(String _departureDate, String _originAirport){
+        this.departureDate = _departureDate;
+        this.originAirport = _originAirport;
+    }
+
+    //API connection
+    public static JSONObject findFlightInformation() {
+
+        //URL concatenation
         String baseURl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US" +
                 "/USD/en-US/SFO-sky/";
-
-        String airportPiece = _originAirport + "-sky/";
-        String datePiece = _departureDate;
+        String airportPiece = originAirport + "-sky/";
+        String datePiece = departureDate;
         String finalURL = baseURl + airportPiece + datePiece;
         URL url;
 
@@ -30,7 +40,6 @@ public class GetFlightData implements FlightDataInterface{
 
             //Test URL connection
             int status = con.getResponseCode();
-
             if (status != 200) {
                 System.out.printf("Error: Could not load. Status: " + status);
             } else {
@@ -61,21 +70,14 @@ public class GetFlightData implements FlightDataInterface{
         return null;
     }
 
-    //Make object have parameters and create wrapper classes
-
-    //public String getDate(){
-      //  System.out.println("What mon");
-    //}
-
-    //Usable
-    public String getCarrier(String _departureDate, String _originAirport) throws JSONException, NotDirectFlightException {
-        JSONArray carrierInfoArray = getCarriers(_departureDate,_originAirport);
-        String carrierId;
+    //Uses carrier ID from "Carriers" and finds the carrier from "Quotes".
+    public String getCarrier() throws JSONException, NotDirectFlightException {
+        JSONArray carrierInfoArray = getCarriers();
         for(int i = 0; i <= carrierInfoArray.length(); i++) {
             JSONObject carrierInfoObject = carrierInfoArray.getJSONObject(i);
             String carrierID = carrierInfoObject.getString("CarrierId");
             int carrierIDInteger = Integer.parseInt(carrierID);
-            if (getCarrierId(_departureDate,_originAirport) == carrierIDInteger){
+            if (getCarrierId() == carrierIDInteger){
                 return carrierInfoObject.getString("Name");
             }
 
@@ -83,9 +85,9 @@ public class GetFlightData implements FlightDataInterface{
         return "getCarrier failed";
     }
 
-    //Usable
-    public int isDirectFlight(String _departureDate, String _originAirport) throws JSONException, NotDirectFlightException {
-        JSONArray quotesInfoArray = getQuotes(_departureDate,_originAirport);
+    //Checks if a flight is a direct flight. Returns the index of the flight if it is direct or an exception if it is not.
+    public int isDirectFlight() throws JSONException, NotDirectFlightException {
+        JSONArray quotesInfoArray = getQuotes();
         for(int i = 0; i < quotesInfoArray.length(); i++) {
             JSONObject quotesInfoObject = quotesInfoArray.getJSONObject(i);
             if (quotesInfoObject.getString("Direct").toLowerCase().equals("true")){
@@ -98,18 +100,18 @@ public class GetFlightData implements FlightDataInterface{
         throw new NotDirectFlightException("No direct flights. Contact representative for help");
     }
 
-    //Usable
-    public String getPrice(String _departureDate, String _originAirport) throws JSONException, NotDirectFlightException {
-        JSONArray quoteInfoArray = getQuotes(_departureDate,_originAirport);
-            JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(isDirectFlight(_departureDate,_originAirport) - 1);
+    //CHecks the price of the chosen flight that is direct.
+    public String getPrice() throws JSONException, NotDirectFlightException {
+        JSONArray quoteInfoArray = getQuotes();
+            JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(isDirectFlight() - 1);
             return carrierInfoObject.getString("MinPrice");
 
     }
 
-    //Usable
-    public int getCarrierId(String _departureDate, String _originAirport) throws JSONException, NotDirectFlightException {
-        JSONArray quoteInfoArray = getQuotes(_departureDate,_originAirport);
-            JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(isDirectFlight(_departureDate,_originAirport) - 1);
+    //Gets the carrier ID from "Carriers" of the first direct flight.
+    public int getCarrierId() throws JSONException, NotDirectFlightException {
+        JSONArray quoteInfoArray = getQuotes();
+            JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(isDirectFlight() - 1);
             JSONObject outboundLeg = carrierInfoObject.getJSONObject("OutboundLeg");
             String idWithBrackets = outboundLeg.getString("CarrierIds");
             String idWithoutBrackets = idWithBrackets.substring(1,idWithBrackets.length() - 1);
@@ -118,22 +120,25 @@ public class GetFlightData implements FlightDataInterface{
 
     }
 
-    public JSONArray getQuotes(String _departureDate, String _originAirport) throws JSONException {
-        JSONObject input = findFlightInformation(_departureDate,_originAirport);
+    //Retrieves information from the API and returns the "Quotes" section.
+    public JSONArray getQuotes() throws JSONException {
+        JSONObject input = findFlightInformation();
         return input.getJSONArray("Quotes");
     }
-    public JSONArray getCarriers(String _departureDate, String _originAirport) throws JSONException {
-        JSONObject input = findFlightInformation(_departureDate,_originAirport);
+
+    //Retrieves information from the API and returns the "Carriers" section.
+    public JSONArray getCarriers() throws JSONException {
+        JSONObject input = findFlightInformation();
         return input.getJSONArray("Carriers");
     }
 
-    public Flight[] getFlights(String _departureDate, String _originAirport) throws JSONException {
-        // TODO: Implement this to get valid flight information
+    public Flight[] getFlights() {
+        // TODO: Thomas I'm going to need you to implement this method that gathers all flights and returns them as a Flight object array.
+        // Below is a sample I created, but we will need to obtain actual data using the API.
 
-        Flight flight1 = new Flight(1, "B", 300 );
+        Flight flight1 = new Flight(1, "B", 300);
         Flight flight2 = new Flight(2, "D", 450);
-        Flight[] flights = new Flight[]{ flight1, flight2 };
-        return flights;
+        return new Flight[]{ flight1, flight2 };
     }
 
 }
