@@ -26,6 +26,7 @@ public class SearchFlight {
     public TableColumn carrierColumn;
     public TableColumn priceColumnColumn;
     public DatePicker flightDatePicker;
+    public Button saveFlightButton;
 
     @FXML
     protected void initialize() {
