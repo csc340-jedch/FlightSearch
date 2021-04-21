@@ -76,7 +76,7 @@ public class SearchFlight {
             // Get the selected flight information
             ObservableList list = flightTable.getSelectionModel().getSelectedCells();
             TablePosition tablePosition = (TablePosition)list.get(0);
-            String carrierId = (String)tablePosition.getTableColumn().getCellData("quote");
+            String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
 
             // Get the username
             String username = Controller.getUsername();
