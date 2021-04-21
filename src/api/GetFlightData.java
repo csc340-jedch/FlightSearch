@@ -132,4 +132,13 @@ public class GetFlightData implements FlightDataInterface{
         return input.getJSONArray("Carriers");
     }
 
+    public Flight[] getFlights() {
+        // TODO: Thomas I'm going to need you to implement this method that gathers all flights and returns them as a Flight object array.
+        // Below is a sample I created, but we will need to obtain actual data using the API.
+
+        Flight flight1 = new Flight(1, "B", 300);
+        Flight flight2 = new Flight(2, "D", 450);
+        return new Flight[]{ flight1, flight2 };
+    }
+
 }
