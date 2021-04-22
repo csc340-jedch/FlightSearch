@@ -31,7 +31,7 @@ public class Encryption {
         String md5Password = md5(password);
 
         // Add the salt to the end of the password and MD5 hash the entire thing one last time
-        return md5(password + salt);
+        return md5(md5Password + md5Salt);
     }
 
     private static String md5(String input) throws NoSuchAlgorithmException {
