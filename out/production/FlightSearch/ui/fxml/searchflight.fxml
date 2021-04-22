@@ -37,12 +37,15 @@
                   <Insets left="3.0" />
                </GridPane.margin>
             </Label>
-            <TableView fx:id="flightTable" maxHeight="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TableView fx:id="flightTable" maxHeight="-Infinity" prefHeight="199.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columns>
                 <TableColumn fx:id="carrierIDColumn" prefWidth="75.0" text="Carrier ID" />
                 <TableColumn fx:id="carrierColumn" prefWidth="75.0" text="Carrier" />
                   <TableColumn fx:id="priceColumnColumn" prefWidth="75.0" text="Quote" />
               </columns>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
             </TableView>
             <Button fx:id="searchFlight" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search Flight" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClick" text="Back to Menu" GridPane.rowIndex="3">
@@ -50,12 +53,18 @@
                   <Insets left="3.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="saveFlightButton" mnemonicParsing="false" onAction="#saveFlightClicked" text="Save Flight" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button fx:id="saveFlightButton" mnemonicParsing="false" onAction="#saveFlightClicked" text="Save Flight" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin></Button>
             <DatePicker fx:id="flightDatePicker" GridPane.columnIndex="1" />
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="173.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="433.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="158.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="448.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />

@@ -3,7 +3,6 @@ package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ConnectToDB {
 
@@ -12,16 +11,17 @@ public class ConnectToDB {
     private static final String CONN = "jdbc:mysql://35.237.96.145/jedch_db";
 
 
-    public static void testConnect() throws SQLException {
+    public static Connection testConnect() throws SQLException {
+
 
         Connection con = null;
-        Statement stmt = null;
+        //Statement stmt = null;
         try {
             con = DriverManager.getConnection(CONN, USERNAME, PASSWORD);
             System.out.println("Connected");
 
-            stmt = con.createStatement();
-            stmt.executeUpdate(CreateTables.CREATE_CLIENT_TABLE);
+            //stmt = con.createStatement();
+            //stmt.executeUpdate(CreateTables.CREATE_CLIENT_TABLE);
 
 
         } catch (SQLException e) {
@@ -31,6 +31,7 @@ public class ConnectToDB {
                 con.close();
             }
         }
+        return con;
     }
 
 }
