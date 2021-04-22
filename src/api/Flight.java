@@ -3,12 +3,12 @@ package api;
 public class Flight {
     private final int carrierID;
     private final String carrier;
-    private final int price;
+    private final int quote;
 
-    public Flight(int carrierID, String carrier, int price) {
+    public Flight(int carrierID, String carrier, int quote) {
         this.carrierID = carrierID;
         this.carrier = carrier;
-        this.price = price;
+        this.quote = quote;
     }
 
     public int getCarrierID() {
@@ -19,7 +19,7 @@ public class Flight {
         return carrier;
     }
 
-    public int getCost() {
-        return price;
+    public int getQuote() {
+        return quote;
     }
 }

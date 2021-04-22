@@ -26,6 +26,7 @@ public class SearchFlight {
     public TableColumn carrierColumn;
     public TableColumn priceColumnColumn;
     public DatePicker flightDatePicker;
+    public Button saveFlightButton;
 
     @FXML
     protected void initialize() {
@@ -36,7 +37,7 @@ public class SearchFlight {
         // Set column ids
         carrierIDColumn.setCellValueFactory(new PropertyValueFactory<>("carrierID"));
         carrierColumn.setCellValueFactory(new PropertyValueFactory<>("carrier"));
-        priceColumnColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        priceColumnColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
     }
 
     public void searchButtonClicked(ActionEvent actionEvent) throws JSONException {
@@ -50,8 +51,8 @@ public class SearchFlight {
         }
 
         // Get valid flights
-        GetFlightData flightData = new GetFlightData();
-        Flight[] flights = flightData.getFlights(date, airport);
+        GetFlightData flightData = new GetFlightData(date, airport);
+        Flight[] flights = flightData.getFlights();
 
         // Show the valid flights
         ObservableList<Flight> list = FXCollections.observableArrayList();
@@ -75,7 +76,7 @@ public class SearchFlight {
             // Get the selected flight information
             ObservableList list = flightTable.getSelectionModel().getSelectedCells();
             TablePosition tablePosition = (TablePosition)list.get(0);
-            String carrierId = (String)tablePosition.getTableColumn().getCellData("cost");
+            String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
 
             // Get the username
             String username = Controller.getUsername();
