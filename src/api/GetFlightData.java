@@ -91,7 +91,7 @@ public class GetFlightData implements FlightDataInterface {
         JSONArray quotesInfoArray = getQuotes();
         for(int i = 0; i < quotesInfoArray.length(); i++) {
             JSONObject quotesInfoObject = quotesInfoArray.getJSONObject(i);
-            if (quotesInfoObject.getString("Direct").toLowerCase().equals("true")){
+            if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")){
                 int output = Integer.parseInt(quotesInfoObject.getString("QuoteId"));
                 return output;
             } else {
@@ -144,7 +144,7 @@ public class GetFlightData implements FlightDataInterface {
         JSONArray input = getQuotes();
         for (int i = 0; i < input.length(); i++) {
             JSONObject quotesInfoObject = input.getJSONObject(i);
-            if (quotesInfoObject.getString("Direct").toLowerCase().equals("true")) {
+            if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")) {
                 Flight validFlight = new Flight(getCarrierId(i), getCarrier(i),getPrice(i));
                 output.add(validFlight);
             } else {
