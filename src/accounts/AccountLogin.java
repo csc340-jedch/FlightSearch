@@ -6,7 +6,7 @@ public class AccountLogin {
         return true;
     }
 
-    public static void createAccount(String username, String password, String email) {
+    public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate) {
         // TODO: Implement this using database connection
     }
 

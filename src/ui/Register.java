@@ -56,7 +56,7 @@ public class Register {
         }
 
         // We are clear to create the account
-        AccountLogin.createAccount(username, password, email);
+        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate);
 
         // Go to the main menu
         Controller controller = Controller.getInstance();
