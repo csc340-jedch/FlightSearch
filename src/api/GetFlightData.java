@@ -31,6 +31,7 @@ public class GetFlightData implements FlightDataInterface {
         String airportPiece = originAirport + "-sky/";
         String datePiece = departureDate;
         String finalURL = baseURl + airportPiece + datePiece;
+        System.out.println("Final URL: " + finalURL);
         URL url;
 
         try {
@@ -147,10 +148,17 @@ public class GetFlightData implements FlightDataInterface {
             if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")) {
                 Flight validFlight = new Flight(getCarrierId(i), getCarrier(i),getPrice(i));
                 output.add(validFlight);
-            } else {
-                throw new NotDirectFlightException("No direct flights. Contact representative for help");
             }
         }
         return output;
+    }
+
+    public static String[] getLocalAirports(String zipcode) {
+        // TODO: Gene->Thomas: If you could implement this method that would be great.
+        // This should get all airports within a certain zip-code, and return as a String array or list.
+
+        String[] airports = { "LAX" };
+
+        return airports;
     }
 }

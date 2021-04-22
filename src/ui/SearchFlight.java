@@ -33,7 +33,8 @@ public class SearchFlight {
     @FXML
     protected void initialize() {
         // Populate the departure airport combobox
-        String[] airports = { "RDU" };
+        String zip = "27713";
+        String[] airports = GetFlightData.getLocalAirports(zip);
         airportComboBox.getItems().addAll(airports);
 
         // Set column ids
@@ -56,10 +57,14 @@ public class SearchFlight {
         GetFlightData flightData = new GetFlightData(date, airport);
         List<Flight> flights = flightData.getFlights();
 
-        // Show the valid flights
-        ObservableList<Flight> list = FXCollections.observableArrayList();
-        list.addAll(flights);
-        flightTable.setItems(list);
+        if (flights.isEmpty()) {
+            Controller.showMessage("No valid flights for given specifications.", "No flights");
+        } else {
+            // Show the valid flights
+            ObservableList<Flight> list = FXCollections.observableArrayList();
+            list.addAll(flights);
+            flightTable.setItems(list);
+        }
     }
 
     public void backButtonClick(ActionEvent actionEvent) throws IOException {
