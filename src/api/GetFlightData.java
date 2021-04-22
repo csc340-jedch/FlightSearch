@@ -3,11 +3,13 @@ package api;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GetFlightData implements FlightDataInterface {
 
@@ -77,7 +79,7 @@ public class GetFlightData implements FlightDataInterface {
             JSONObject carrierInfoObject = carrierInfoArray.getJSONObject(_index);
             String carrierID = carrierInfoObject.getString("CarrierId");
             int carrierIDInteger = Integer.parseInt(carrierID);
-            if (getCarrierId() == carrierIDInteger){
+            if (getCarrierId(0) == carrierIDInteger){
                 return carrierInfoObject.getString("Name");
 
         }
@@ -137,8 +139,8 @@ public class GetFlightData implements FlightDataInterface {
         return input.getJSONArray("Carriers");
     }
 
-    public ArrayList getFlights() throws JSONException, NotDirectFlightException {
-        ArrayList<Flight> output = new ArrayList<Flight>();
+    public List<Flight> getFlights() throws JSONException, NotDirectFlightException {
+        List<Flight> output = new ArrayList<>();
         JSONArray input = getQuotes();
         for (int i = 0; i < input.length(); i++) {
             JSONObject quotesInfoObject = input.getJSONObject(i);

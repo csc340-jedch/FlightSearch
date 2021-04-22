@@ -2,6 +2,7 @@ package ui;
 
 import api.Flight;
 import api.GetFlightData;
+import api.NotDirectFlightException;
 import db.FlightInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SearchFlight {
     public Button searchFlight;
@@ -40,7 +42,7 @@ public class SearchFlight {
         priceColumnColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
     }
 
-    public void searchButtonClicked(ActionEvent actionEvent) throws JSONException {
+    public void searchButtonClicked(ActionEvent actionEvent) throws JSONException, NotDirectFlightException {
         String date = flightDatePicker.getValue().toString();
         String airport = airportComboBox.getValue().toString();
 
@@ -52,7 +54,7 @@ public class SearchFlight {
 
         // Get valid flights
         GetFlightData flightData = new GetFlightData(date, airport);
-        Flight[] flights = flightData.getFlights();
+        List<Flight> flights = flightData.getFlights();
 
         // Show the valid flights
         ObservableList<Flight> list = FXCollections.observableArrayList();
