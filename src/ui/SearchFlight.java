@@ -41,14 +41,14 @@ public class SearchFlight {
     }
 
     public void searchButtonClicked(ActionEvent actionEvent) throws JSONException, NotDirectFlightException {
-        String date = flightDatePicker.getValue().toString();
-        String airport = airportComboBox.getValue().toString();
-
         // Make sure all fields are filled out
-        if (date.isEmpty() || airport.isEmpty()) {
+        if (flightDatePicker.getValue() == null || airportComboBox.getValue() == null) {
             ui.Controller.showMessage("Please fill out all flight information.", "Fill out all fields");
             return;
         }
+
+        String date = flightDatePicker.getValue().toString();
+        String airport = airportComboBox.getValue().toString();
 
         // Get valid flights
         GetFlightData flightData = new GetFlightData(date, airport);
