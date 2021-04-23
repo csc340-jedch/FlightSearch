@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class Register {
 
@@ -26,7 +27,7 @@ public class Register {
         controller.changePane("login");
     }
 
-    public void createButtonClick(ActionEvent actionEvent) throws IOException {
+    public void createButtonClick(ActionEvent actionEvent) throws IOException, NoSuchAlgorithmException {
         // TODO: Create user using database methods
 
         String username = usernameTextField.getText();
@@ -36,12 +37,14 @@ public class Register {
 
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
-        String birthDate = birthDatePicker.getValue().toString();
 
-        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDate.isEmpty()) {
+
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDatePicker.getValue() == null) {
             Controller.showMessage("Please fill out all fields", "Fill out all information fields");
             return;
         }
+
+        String birthDate = birthDatePicker.getValue().toString();
 
         // Check if username already exists
         if (AccountLogin.usernameExists(username)) {
@@ -56,7 +59,7 @@ public class Register {
         }
 
         // We are clear to create the account
-        AccountLogin.createAccount(username, password, email);
+        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate);
 
         // Go to the main menu
         Controller controller = Controller.getInstance();

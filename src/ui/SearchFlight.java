@@ -2,6 +2,7 @@ package ui;
 
 import api.Flight;
 import api.GetFlightData;
+import api.NotDirectFlightException;
 import db.FlightInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,14 +13,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SearchFlight {
     public Button searchFlight;
 
     public TableView flightTable;
-    public TableColumn destColumn;
-    public TableColumn dateColumn;
-    public TableColumn costColumn;
     public Button backButton;
     public ComboBox airportComboBox;
     public TableColumn carrierIDColumn;
@@ -31,7 +30,8 @@ public class SearchFlight {
     @FXML
     protected void initialize() {
         // Populate the departure airport combobox
-        String[] airports = { "RDU" };
+        String zip = "27713";
+        String[] airports = GetFlightData.getLocalAirports(zip);
         airportComboBox.getItems().addAll(airports);
 
         // Set column ids
@@ -40,7 +40,7 @@ public class SearchFlight {
         priceColumnColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
     }
 
-    public void searchButtonClicked(ActionEvent actionEvent) throws JSONException {
+    public void searchButtonClicked(ActionEvent actionEvent) throws JSONException, NotDirectFlightException {
         String date = flightDatePicker.getValue().toString();
         String airport = airportComboBox.getValue().toString();
 
@@ -52,12 +52,16 @@ public class SearchFlight {
 
         // Get valid flights
         GetFlightData flightData = new GetFlightData(date, airport);
-        Flight[] flights = flightData.getFlights();
+        List<Flight> flights = flightData.getFlights();
 
-        // Show the valid flights
-        ObservableList<Flight> list = FXCollections.observableArrayList();
-        list.addAll(flights);
-        flightTable.setItems(list);
+        if (flights.isEmpty()) {
+            Controller.showMessage("No valid flights for given specifications.", "No flights");
+        } else {
+            // Show the valid flights
+            ObservableList<Flight> list = FXCollections.observableArrayList();
+            list.addAll(flights);
+            flightTable.setItems(list);
+        }
     }
 
     public void backButtonClick(ActionEvent actionEvent) throws IOException {

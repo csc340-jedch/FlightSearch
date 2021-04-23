@@ -10,6 +10,7 @@
       <root url="jar://$PROJECT_DIR$/lib/javafx.swing.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javafx.web.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/org.json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-8.0.23.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
