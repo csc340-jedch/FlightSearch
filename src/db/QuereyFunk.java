@@ -103,12 +103,15 @@ public class QuereyFunk {
     private static String dataCon(String query){
         Statement stmt;
         try (Connection con = testConnect()) {
-            stmt = con.createStatement();
-            stmt.executeUpdate(query);
+            if (con != null) {
+                stmt = con.createStatement();
+                stmt.executeUpdate(query);
+            } else {
+                System.out.println("Database connection is null");
+            }
         } catch (SQLException e) {
             System.err.print(e);
         }
-
         return query;
     }
 
