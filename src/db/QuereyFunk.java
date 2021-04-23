@@ -101,11 +101,12 @@ public class QuereyFunk {
 
     }
 
-    protected static String dataCon(String query){
+    protected static String requestDataCon(String query){
         Statement stmt;
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
             stmt.executeUpdate(query);
+            stmt.executeQuery(query);
         } catch (SQLException e) {
             System.err.print(e);
         }
@@ -125,7 +126,7 @@ public class QuereyFunk {
         String form = "', '";
         String clientData = "('"+username+form+password+form+email+"')";
         String query = "INSERT INTO test_client VALUES "+clientData;
-        dataCon(query);
+        insertDataCon(query);
     }
     public String insertClient(){
         return "INSERT INTO clients VALUES (DEFAULT" + fullClientData(clientFirstName, clientLastName,
@@ -138,26 +139,26 @@ public class QuereyFunk {
     public static String getClientPasswordFromName(String clientFirstName, String clientLastName){
         String query = "SELECT client_password FROM clients WHERE first_name = '"+clientFirstName+"' && last_name = '"
                 +clientLastName+"'";
-        return dataCon(query);
+        return requestDataCon(query);
     }
     public static String getPasswordFromUsername(String clientUsername){
         String query = "SELECT client_password FROM clients WHERE client_username = '"+clientUsername+"'";
-        return dataCon(query);
+        return requestDataCon(query);
     }
     public static String getUsernameFromPassword(String clientPassword){
         String query = "SELECT client_username FROM clients WHERE client_password = '"+clientPassword+"'";
-        return dataCon(query);
+        return requestDataCon(query);
     }
     public static String getClientPasswordFromID(String clientID){
         String query = "SELECT client_password FROM clients WHERE client_id = "+clientID;
-        return dataCon(query);
+        return requestDataCon(query);
     }
 
     public static String getClientNameFromPassword(String password){
         String query1 = "SELECT first_name FROM clients WHERE client_password = '"+password+"'";
         String query2 = "SELECT last_name FROM clients WHERE client_password = '"+password+"'";
-        String first = dataCon(query1);
-        String last = dataCon(query2);
+        String first = requestDataCon(query1);
+        String last = requestDataCon(query2);
 
         return first+" "+last;
     }
