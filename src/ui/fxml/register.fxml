@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Register">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Register">
    <children>
       <GridPane layoutX="24.0" layoutY="20.0" prefHeight="376.0" prefWidth="571.0">
         <columnConstraints>
@@ -29,7 +29,7 @@
             <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Create Account">
+            <Label text="Create Account" textFill="WHITE" underline="true">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -39,17 +39,17 @@
                   <Insets left="60.0" />
                </GridPane.margin>
             </Button>
-            <Label text="Username:" GridPane.rowIndex="1" />
+            <Label text="Username:" textFill="WHITE" GridPane.rowIndex="1" />
             <TextField fx:id="usernameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Password:" GridPane.rowIndex="2" />
-            <Label text="Email:" GridPane.rowIndex="3" />
-            <Label text="Phone Number:" GridPane.rowIndex="4" />
+            <Label text="Password:" textFill="WHITE" GridPane.rowIndex="2" />
+            <Label text="Email:" textFill="WHITE" GridPane.rowIndex="3" />
+            <Label text="Phone Number:" textFill="WHITE" GridPane.rowIndex="4" />
             <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="First Name:" GridPane.rowIndex="6" />
-            <Label text="Last Name:" GridPane.rowIndex="7" />
-            <Label text="Birth Date:" GridPane.rowIndex="8" />
+            <Label text="First Name:" textFill="WHITE" GridPane.rowIndex="6" />
+            <Label text="Last Name:" textFill="WHITE" GridPane.rowIndex="7" />
+            <Label text="Birth Date:" textFill="WHITE" GridPane.rowIndex="8" />
             <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <DatePicker fx:id="birthDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="8" />

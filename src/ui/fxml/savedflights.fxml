@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SavedFlights">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SavedFlights">
    <children>
       <GridPane layoutX="17.0" layoutY="13.0" prefHeight="376.0" prefWidth="578.0">
         <columnConstraints>
@@ -27,7 +27,7 @@
                   <TableColumn fx:id="quoteColumn" prefWidth="75.0" text="Quote" />
               </columns>
             </TableView>
-            <Label text="Your Saved Flights" underline="true" GridPane.valignment="TOP">
+            <Label text="Your Saved Flights" textFill="WHITE" underline="true" GridPane.valignment="TOP">
                <font>
                   <Font name="Courier New Bold" size="18.0" />
                </font>
