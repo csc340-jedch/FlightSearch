@@ -8,11 +8,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SearchFlight">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SearchFlight">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="606.0">
          <children>
-            <Label text="Flight Date:">
+            <Label text="Flight Date:" textFill="WHITE">
                <font>
                   <Font name="Courier New Bold" size="14.0" />
                </font>
@@ -20,7 +20,7 @@
                   <Insets left="3.0" top="3.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Nearest Airport:" GridPane.rowIndex="1">
+            <Label text="Nearest Airport:" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font name="Courier New Bold" size="14.0" />
                </font>
@@ -29,7 +29,7 @@
                </GridPane.margin>
             </Label>
             <ComboBox fx:id="airportComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Available Flights:" GridPane.rowIndex="2">
+            <Label text="Available Flights:" textFill="WHITE" GridPane.rowIndex="2">
                <font>
                   <Font name="Courier New Bold" size="14.0" />
                </font>
@@ -37,12 +37,15 @@
                   <Insets left="3.0" />
                </GridPane.margin>
             </Label>
-            <TableView fx:id="flightTable" maxHeight="-Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TableView fx:id="flightTable" maxHeight="-Infinity" prefHeight="199.0" prefWidth="112.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columns>
                 <TableColumn fx:id="carrierIDColumn" prefWidth="75.0" text="Carrier ID" />
                 <TableColumn fx:id="carrierColumn" prefWidth="75.0" text="Carrier" />
                   <TableColumn fx:id="priceColumnColumn" prefWidth="75.0" text="Quote" />
               </columns>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
             </TableView>
             <Button fx:id="searchFlight" mnemonicParsing="false" onAction="#searchButtonClicked" text="Search Flight" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClick" text="Back to Menu" GridPane.rowIndex="3">
@@ -50,12 +53,18 @@
                   <Insets left="3.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="saveFlightButton" mnemonicParsing="false" onAction="#saveFlightClicked" text="Save Flight" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button fx:id="saveFlightButton" mnemonicParsing="false" onAction="#saveFlightClicked" text="Save Flight" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin></Button>
             <DatePicker fx:id="flightDatePicker" GridPane.columnIndex="1" />
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="173.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="433.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="158.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" prefWidth="448.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="60.0" vgrow="SOMETIMES" />

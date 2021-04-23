@@ -3,12 +3,15 @@ package api;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GetFlightData implements FlightDataInterface{
+public class GetFlightData implements FlightDataInterface {
 
     private static String departureDate;
     private static String originAirport;
@@ -28,6 +31,7 @@ public class GetFlightData implements FlightDataInterface{
         String airportPiece = originAirport + "-sky/";
         String datePiece = departureDate;
         String finalURL = baseURl + airportPiece + datePiece;
+        System.out.println("Final URL: " + finalURL);
         URL url;
 
         try {
@@ -70,16 +74,14 @@ public class GetFlightData implements FlightDataInterface{
         return null;
     }
 
-    //Uses carrier ID from "Carriers" and finds the carrier from "Quotes".
-    public String getCarrier() throws JSONException, NotDirectFlightException {
+    public String getCarrier(int _index) throws JSONException, NotDirectFlightException {
         JSONArray carrierInfoArray = getCarriers();
-        for(int i = 0; i <= carrierInfoArray.length(); i++) {
-            JSONObject carrierInfoObject = carrierInfoArray.getJSONObject(i);
+
+            JSONObject carrierInfoObject = carrierInfoArray.getJSONObject(_index);
             String carrierID = carrierInfoObject.getString("CarrierId");
             int carrierIDInteger = Integer.parseInt(carrierID);
-            if (getCarrierId() == carrierIDInteger){
+            if (getCarrierId(0) == carrierIDInteger){
                 return carrierInfoObject.getString("Name");
-            }
 
         }
         return "getCarrier failed";
@@ -90,7 +92,7 @@ public class GetFlightData implements FlightDataInterface{
         JSONArray quotesInfoArray = getQuotes();
         for(int i = 0; i < quotesInfoArray.length(); i++) {
             JSONObject quotesInfoObject = quotesInfoArray.getJSONObject(i);
-            if (quotesInfoObject.getString("Direct").toLowerCase().equals("true")){
+            if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")){
                 int output = Integer.parseInt(quotesInfoObject.getString("QuoteId"));
                 return output;
             } else {
@@ -100,7 +102,7 @@ public class GetFlightData implements FlightDataInterface{
         throw new NotDirectFlightException("No direct flights. Contact representative for help");
     }
 
-    //CHecks the price of the chosen flight that is direct.
+    //Checks the price of the chosen flight that is direct.
     public String getPrice() throws JSONException, NotDirectFlightException {
         JSONArray quoteInfoArray = getQuotes();
             JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(isDirectFlight() - 1);
@@ -108,15 +110,21 @@ public class GetFlightData implements FlightDataInterface{
 
     }
 
-    //Gets the carrier ID from "Carriers" of the first direct flight.
-    public int getCarrierId() throws JSONException, NotDirectFlightException {
+    public int getPrice(int _index) throws JSONException, NotDirectFlightException {
         JSONArray quoteInfoArray = getQuotes();
-            JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(isDirectFlight() - 1);
-            JSONObject outboundLeg = carrierInfoObject.getJSONObject("OutboundLeg");
-            String idWithBrackets = outboundLeg.getString("CarrierIds");
-            String idWithoutBrackets = idWithBrackets.substring(1,idWithBrackets.length() - 1);
-            int idAsInteger = Integer.parseInt(idWithoutBrackets);
-            return idAsInteger;
+        JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(_index);
+        return Integer.parseInt(carrierInfoObject.getString("MinPrice"));
+
+    }
+
+    public int getCarrierId(int _index) throws JSONException, NotDirectFlightException {
+        JSONArray quoteInfoArray = getQuotes();
+        JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(_index);
+        JSONObject outboundLeg = carrierInfoObject.getJSONObject("OutboundLeg");
+        String idWithBrackets = outboundLeg.getString("CarrierIds");
+        String idWithoutBrackets = idWithBrackets.substring(1,idWithBrackets.length() - 1);
+        int idAsInteger = Integer.parseInt(idWithoutBrackets);
+        return idAsInteger;
 
     }
 
@@ -132,13 +140,25 @@ public class GetFlightData implements FlightDataInterface{
         return input.getJSONArray("Carriers");
     }
 
-    public Flight[] getFlights() {
-        // TODO: Thomas I'm going to need you to implement this method that gathers all flights and returns them as a Flight object array.
-        // Below is a sample I created, but we will need to obtain actual data using the API.
-
-        Flight flight1 = new Flight(1, "B", 300);
-        Flight flight2 = new Flight(2, "D", 450);
-        return new Flight[]{ flight1, flight2 };
+    public List<Flight> getFlights() throws JSONException, NotDirectFlightException {
+        List<Flight> output = new ArrayList<>();
+        JSONArray input = getQuotes();
+        for (int i = 0; i < input.length(); i++) {
+            JSONObject quotesInfoObject = input.getJSONObject(i);
+            if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")) {
+                Flight validFlight = new Flight(getCarrierId(i), getCarrier(i),getPrice(i));
+                output.add(validFlight);
+            }
+        }
+        return output;
     }
 
+    public static String[] getLocalAirports(String zipcode) {
+        // TODO: Gene->Thomas: If you could implement this method that would be great.
+        // This should get all airports within a certain zip-code, and return as a String array or list.
+
+        String[] airports = { "LAX" };
+
+        return airports;
+    }
 }
