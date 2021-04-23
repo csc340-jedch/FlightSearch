@@ -16,11 +16,8 @@ Due Date: April 30, 2021
 [User Interface Code](https://github.com/csc340-jedch/FlightSearch/tree/main/src/ui)
 
 ## Project Contributors
-**Thomas Knepshield**
-API Integration
+**Thomas Knepshield** - API Integration
 
-**Gene Pressinger**
-GUI Architect
+**Gene Pressinger** - GUI Architect
 
-**Logan Whitfield**
-Database Designer
+**Logan Whitfield** - Database Designer
