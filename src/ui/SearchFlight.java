@@ -19,9 +19,6 @@ public class SearchFlight {
     public Button searchFlight;
 
     public TableView flightTable;
-    public TableColumn destColumn;
-    public TableColumn dateColumn;
-    public TableColumn costColumn;
     public Button backButton;
     public ComboBox airportComboBox;
     public TableColumn carrierIDColumn;
