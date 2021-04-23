@@ -1,6 +1,7 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -100,7 +101,7 @@ public class QuereyFunk {
 
     }
 
-    private static String dataCon(String query){
+    protected static String dataCon(String query){
         Statement stmt;
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
@@ -157,18 +158,45 @@ public class QuereyFunk {
         String query2 = "SELECT last_name FROM clients WHERE client_password = '"+password+"'";
         String first = dataCon(query1);
         String last = dataCon(query2);
+
         return first+" "+last;
     }
 
+    public static boolean usernameExists(String username) {
+        String retName = null;
+        String query = "SELECT client_username FROM clients WHERE client_username = '"+username+"'";
+        ResultSet result;
+        Statement stmt;
 
-    /*public String addClientComp(String clientID, String clientName){
-        String newClient = clientID;
-        return newClient;
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while(result.next()) {
+                retName = result.getString("client_username");
+            }
+        } catch (SQLException e) {
+            System.err.print(e);
+        }
+        return username.equals(retName);
+
     }
-    public String addClientIncomp(){
-        String newClient = "";
-        return newClient;
-    }*/
 
+    public static boolean emailExists(String email) {
+        String retEmail = null;
+        String query = "SELECT client_email FROM clients WHERE client_email = '"+email+"'";
+        ResultSet result;
+        Statement stmt;
 
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while(result.next()) {
+                retEmail = result.getString("client_email");
+            }
+        } catch (SQLException e) {
+            System.err.print(e);
+        }
+        return email.equals(retEmail);
+
+    }
 }

@@ -8,16 +8,14 @@ public class AccountLogin {
     }
 
     public static void createAccount(String username, String password, String email) {
-        // TODO: Implement this using database connection
+        db.QuereyFunk.testClientInsert(username, password, email);
     }
 
     public static boolean usernameExists(String username) {
-        // TODO: Implement this using database connection
-        return false;
+        return db.QuereyFunk.usernameExists(username);
     }
 
     public static boolean emailExists(String email) {
-        // TODO: Implement this using database connection
-        return false;
+        return db.QuereyFunk.emailExists(email);
     }
 }
