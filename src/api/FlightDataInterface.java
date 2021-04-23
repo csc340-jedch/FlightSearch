@@ -7,9 +7,9 @@ public interface FlightDataInterface {
 
     public String getPrice() throws JSONException, NotDirectFlightException;
 
-    public String getCarrier() throws JSONException, NotDirectFlightException;
+    public String getCarrier(int _index) throws JSONException, NotDirectFlightException;
 
-    public int getCarrierId() throws JSONException, NotDirectFlightException;
+    public int getCarrierId(int _index) throws JSONException, NotDirectFlightException;
 
     public static JSONObject findFlightInformation() throws JSONException, NotDirectFlightException {
         return null;
