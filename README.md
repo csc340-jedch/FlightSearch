@@ -5,6 +5,7 @@ CSC340-01: Software Engineering
 
 Due Date: April 30, 2021
 
+Professor: Ike Quigley
 
 ## Project Quicklinks
 [API Code](https://github.com/csc340-jedch/FlightSearch/tree/main/src/api)
