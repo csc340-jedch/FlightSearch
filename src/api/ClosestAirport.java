@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class ClosestAirport {
 
@@ -61,13 +62,17 @@ public class ClosestAirport {
         return null;
     }
 
-    public void findAirports() throws JSONException {
-        JSONArray array = getAirportInfo();
-        for(int i = 0; i < Integer.parseInt(AIRPORTOPTIONS); i++){
-            JSONObject object = array.getJSONObject(i);
-            String airportCodeString = object.getString("code");
-            System.out.println(airportCodeString);
+    public ArrayList<String> findAirports() throws JSONException, NoNearbyAirportsException {
+        try {
+            JSONArray array = getAirportInfo();
+            ArrayList<String> airportCodes = new ArrayList<>();
+            for (int i = 0; i < Integer.parseInt(AIRPORTOPTIONS); i++) {
+                JSONObject object = array.getJSONObject(i);
+                airportCodes.add(object.getString("code"));
+            }
+            return airportCodes;
+        } catch (Exception e) {
+            throw new NoNearbyAirportsException("No nearby Airports");
         }
     }
-
 }

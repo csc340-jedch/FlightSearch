@@ -1,4 +1,4 @@
-package Location;
+package api;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,7 +75,7 @@ public class Location {
         }
         public String getLongitude() throws JSONException {
             JSONObject object = getUsableObject();
-            return object.getString("lng");
+            return object.getString("lng"); 
         }
     }
 /**
