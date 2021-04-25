@@ -44,11 +44,11 @@ public class FlightInformation {
     public static void saveFlight(String username, String flightId) {
         String form = "', '";
         String query = "INSERT INTO test_flight VALUES " + "('"+username+form+flightId+"')";
-        QuereyFunk.uploadDataCon(query);
+        QuereyFunk.insertUpdateDataCon(query);
     }
 
     public static void removeFlight(String carrierID, String username){
         String query = "DELETE * FROM flights WHERE carrier_id = '" + carrierID + "' AND user_id = '" + username + "'";
-        QuereyFunk.uploadDataCon(query);
+        QuereyFunk.selectDataCon(query);
     }
 }
