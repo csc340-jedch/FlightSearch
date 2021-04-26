@@ -1,5 +1,8 @@
 package db;
 
+import static db.ConnectToDB.insertUpdateDataCon;
+import static db.ConnectToDB.selectDataCon;
+
 public class FlightInformation {
     String carrierID;
     String clientUsername;
@@ -42,13 +45,22 @@ public class FlightInformation {
 
 
     public static void saveFlight(String username, String flightId) {
+        //This is not working yet. Not sure why but it saves flight as null, null
         String form = "', '";
         String query = "INSERT INTO test_flight VALUES " + "('"+username+form+flightId+"')";
-        QuereyFunk.insertUpdateDataCon(query);
+        insertUpdateDataCon(query);
     }
 
+    /*public static void saveFlight(String username, String carrierID, String carrierName, String price ) {
+        String form = "', '";
+        String query = "INSERT INTO test_flight VALUES " + "('"+username+form+carrierID+form+carrierName+form+price+"')";
+        QuereyFunk.insertUpdateDataCon(query);
+        }
+     */
+
     public static void removeFlight(String carrierID, String username){
+        //Not tested yet. Wanted to get save function right first.
         String query = "DELETE * FROM flights WHERE carrier_id = '" + carrierID + "' AND user_id = '" + username + "'";
-        QuereyFunk.selectDataCon(query);
+        selectDataCon(query);
     }
 }

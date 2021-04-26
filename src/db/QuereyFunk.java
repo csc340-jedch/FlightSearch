@@ -9,7 +9,9 @@ import static db.ConnectToDB.testConnect;
 
 public class QuereyFunk {
 
-    String clientID;
+    //Probably don't need this stuff
+
+    /*String clientID;
     String clientFirstName;
     String clientLastName;
     String clientEmail;
@@ -25,72 +27,93 @@ public class QuereyFunk {
     protected String getClientID() {
         return clientID;
     }
+
     protected void setClientID(String clientID) {
         this.clientID = clientID;
     }
+
     protected String getClientFirstName() {
         return clientFirstName;
     }
+
     protected void setClientFirstName(String clientFirstName) {
         this.clientFirstName = clientFirstName;
     }
-    protected String getClientLastName(){
+
+    protected String getClientLastName() {
         return clientLastName;
     }
+
     protected void setClientLastName(String clientLastName) {
         this.clientLastName = clientLastName;
     }
-    protected String getClientEmail(){
+
+    protected String getClientEmail() {
         return clientEmail;
     }
-    protected void setClientEmail(String clientEmail){
+
+    protected void setClientEmail(String clientEmail) {
         this.clientEmail = clientEmail;
     }
+
     protected String getClientPhone() {
         return clientPhone;
     }
+
     protected void setClientPhone(String clientPhone) {
         this.clientPhone = clientPhone;
     }
+
     protected String getClientBirthDate() {
         return clientBirthDate;
     }
+
     protected void setClientBirthDate(String clientBirthDate) {
         this.clientBirthDate = clientBirthDate;
     }
-    protected String getClientGender(){
+
+    protected String getClientGender() {
         return clientGender;
     }
-    protected void setClientGender(String clientGender){
+
+    protected void setClientGender(String clientGender) {
         this.clientGender = clientGender;
     }
+
     protected String getClientOrigin() {
         return clientOrigin;
     }
+
     protected void setClientOrigin(String clientOrigin) {
         this.clientOrigin = clientOrigin;
     }
+
     protected String getClientUsername() {
         return clientUsername;
     }
+
     protected void setClientUsername(String clientUsername) {
         this.clientUsername = clientUsername;
     }
+
     protected String getClientPassword() {
         return clientPassword;
     }
+
     protected void setClientPassword(String clientPassword) {
         this.clientPassword = clientPassword;
     }
+
     protected String getClientStatus() {
         return clientStatus;
     }
+
     protected void setClientStatus(String clientStatus) {
         this.clientStatus = clientStatus;
     }
 
 
-    public static String selectDataCon(String query){
+    public static String selectDataCon(String query) {
         Statement stmt;
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
@@ -102,7 +125,7 @@ public class QuereyFunk {
         return query;
     }
 
-    protected static String insertUpdateDataCon(String query){
+    public static String insertUpdateDataCon(String query) {
         Statement stmt;
         try (Connection con = testConnect()) {
             if (con != null) {
@@ -116,6 +139,7 @@ public class QuereyFunk {
         }
         return query;
     }
+}
 
     public String fullClientData(String clientFirstNameName, String clientLastName, String clientEmail,
                                  String clientPhone, String clientBirthDate, String clientGender, String clientOrigin,
@@ -125,10 +149,11 @@ public class QuereyFunk {
                 + this.clientPhone+form + this.clientBirthDate+form+ this.clientGender+form+ this.clientOrigin+form+ this.clientUsername
                 +form+ this.clientPassword+form+ this.clientStatus+"')";
     }
-    public static void testClientInsert( String username, String password, String email){
+    public static void testClientInsert( String username, String password, String email, String phoneNumber, String firstName,
+                                         String lastName, String birthDate){
         String form = "', '";
-        String clientData = "('"+username+form+password+form+email+"')";
-        String query = "INSERT INTO test_client VALUES "+clientData;
+        String clientData = "('"+username+form+password+form+email+form+phoneNumber+form+firstName+form+lastName+form+birthDate+"')";
+        String query = "INSERT INTO clients VALUES "+clientData;
         insertUpdateDataCon(query);
     }
     public String insertClient(){
@@ -185,9 +210,9 @@ public class QuereyFunk {
 
     }
 
-    public static String getPasswordFromUsernameTest(String username) {
+   public static String getPasswordFromUsernameTest(String username) {
         String retName = null;
-        String query = "SELECT password FROM test_client WHERE username = '"+username+"'";
+        String query = "SELECT password FROM clients WHERE username = '"+username+"'";
         ResultSet result;
         Statement stmt;
 
@@ -230,4 +255,5 @@ public class QuereyFunk {
         return email.equals(retEmail);
 
     }
+}*/
 }
