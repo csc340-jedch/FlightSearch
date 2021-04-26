@@ -51,6 +51,7 @@ public class Login {
         String password = passwordField.getText();
 
         if (AccountLogin.credentialsAreValid(username, password)) {
+            System.out.println("correct");
             // Username and password is correct
 
             if (rememberMeCheckBox.isSelected()) {

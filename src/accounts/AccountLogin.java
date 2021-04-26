@@ -4,9 +4,16 @@ import java.security.NoSuchAlgorithmException;
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
-        String user = db.QuereyFunk.getUsernameFromPassword(password);
-        String pass = db.QuereyFunk.getPasswordFromUsername(username);
-        return user.equals(pass);
+        if((db.QuereyFunk.usernameExists(username))){
+            System.out.println("2\n");
+            String pass = db.QuereyFunk.getPasswordFromUsernameTest(username);
+            System.out.println(pass+"\n");
+            if(password.equals(pass)){
+                System.out.println("3\n");
+            }
+            return password.equals(pass);
+        }else
+            return false;
     }
 
     public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate) throws NoSuchAlgorithmException {

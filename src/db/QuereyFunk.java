@@ -96,7 +96,7 @@ public class QuereyFunk {
             stmt = con.createStatement();
             stmt.executeQuery(query);
         } catch (SQLException e) {
-            System.err.print(e);
+            e.printStackTrace();
         }
 
         return query;
@@ -112,7 +112,7 @@ public class QuereyFunk {
                 System.out.println("Database connection is null");
             }
         } catch (SQLException e) {
-            System.err.print(e);
+            e.printStackTrace();
         }
         return query;
     }
@@ -145,14 +145,7 @@ public class QuereyFunk {
 
         return selectDataCon(query);
     }
-    public static String getPasswordFromUsername(String clientUsername){
-        String query = "SELECT client_password FROM clients WHERE client_username = '"+clientUsername+"'";
-        return selectDataCon(query);
-    }
-    public static String getUsernameFromPassword(String clientPassword){
-        String query = "SELECT client_username FROM clients WHERE client_password = '"+clientPassword+"'";
-        return selectDataCon(query);
-    }
+
     public static String getClientPasswordFromID(String clientID){
         String query = "SELECT client_password FROM clients WHERE client_id = "+clientID;
         return selectDataCon(query);
@@ -169,7 +162,7 @@ public class QuereyFunk {
 
     public static boolean usernameExists(String username) {
         String retName = null;
-        String query = "SELECT client_username FROM clients WHERE client_username = '"+username+"'";
+        String query = "SELECT username FROM test_client WHERE username = '"+username+"'";
         ResultSet result;
         Statement stmt;
 
@@ -177,12 +170,45 @@ public class QuereyFunk {
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             while(result.next()) {
-                retName = result.getString("client_username");
+                retName = result.getString("username");
             }
         } catch (SQLException e) {
-            System.err.print(e);
+            e.printStackTrace();
         }
-        return username.equals(retName);
+        System.out.println(retName);
+        if(username.equals(retName)){
+            System.out.println("1\n");
+            return true;
+        }else
+            System.out.println("false");
+        return false;
+
+    }
+
+    public static String getPasswordFromUsernameTest(String username) {
+        String retName = null;
+        String query = "SELECT password FROM test_client WHERE username = '"+username+"'";
+        ResultSet result;
+        Statement stmt;
+
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while(result.next()) {
+                retName = result.getString("password");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(retName);
+        if(retName!= null){
+            System.out.println("1\n");
+            return retName;
+
+
+        }else
+            System.out.println("no password found");
+        return null;
 
     }
 
@@ -199,7 +225,7 @@ public class QuereyFunk {
                 retEmail = result.getString("client_email");
             }
         } catch (SQLException e) {
-            System.err.print(e);
+            e.printStackTrace();
         }
         return email.equals(retEmail);
 
