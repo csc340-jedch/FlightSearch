@@ -1,19 +1,22 @@
 package accounts;
 
+import db.ConnectToDB;
+
 import java.security.NoSuchAlgorithmException;
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
-        if((db.QuereyFunk.usernameExists(username))){
-            System.out.println("2\n");
-            String pass = db.QuereyFunk.getPasswordFromUsernameTest(username);
-            System.out.println(pass+"\n");
-            if(password.equals(pass)){
-                System.out.println("3\n");
-            }
-            return password.equals(pass);
-        }else
-            return false;
+        // Check if the username exists
+        if(db.QuereyFunk.usernameExists(username)){
+            // Get the real password from the database
+            String correctPassword = db.QuereyFunk.getPasswordFromUsernameTest(username);
+
+            // Get the account salt to encrypt the password given, so we can compare
+            String accountSalt = ConnectToDB.selectDataCon("SELECT salt FROM clients WHERE username='" + username + "");
+            password = Encryption.getEncryptedPassword(password, accountSalt);
+            return password.equals(correctPassword);
+        }
+        return false;
     }
 
     public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate) throws NoSuchAlgorithmException {
