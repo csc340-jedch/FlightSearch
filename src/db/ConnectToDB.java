@@ -66,6 +66,25 @@ public class ConnectToDB {
         return retRows;
 
     }
+
+    public static String getDatabaseValue(String table, String knownTitle,String knownValue,String unkownTitle) {
+        String retVal = null;
+        Statement stmt;
+        ResultSet result;
+        String query = "SELECT "+unkownTitle+" FROM " + table + " WHERE " + knownTitle + " = '" + knownValue+ "'";
+
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()) {
+                retVal = result.getString(unkownTitle);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return retVal;
+
+    }
 }
 
 
