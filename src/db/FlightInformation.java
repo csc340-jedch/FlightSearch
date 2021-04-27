@@ -11,44 +11,53 @@ public class FlightInformation {
     String isDirect;
 
 
-
     protected String getCarrierID() {
         return carrierID;
     }
+
     protected void setCarrierID(String clientID) {
         this.carrierID = carrierID;
     }
+
     protected String getClientUsername() {
         return clientUsername;
     }
+
     protected void setClientUsername(String clientUsername) {
         this.clientUsername = clientUsername;
     }
+
     protected String getCarrierName() {
         return carrierName;
     }
+
     protected void setCarrierName(String carrierName) {
         this.carrierName = carrierName;
     }
-    protected String getPrice(){
+
+    protected String getPrice() {
         return price;
     }
+
     protected void setPrice(String price) {
         this.price = price;
     }
-    protected String getIsDirect(){
+
+    protected String getIsDirect() {
         return isDirect;
     }
-    protected void setIsDirect(String isDirect){
+
+    protected void setIsDirect(String isDirect) {
         this.isDirect = isDirect;
     }
 
 
-    public static void saveFlight(String username, String flightId) {
+    public static void saveFlight(String username, String carrierID) {
         //This is not working yet. Not sure why but it saves flight as null, null
-        String form = "', '";
-        String query = "INSERT INTO test_flight VALUES " + "('"+username+form+flightId+"')";
-        insertUpdateDataCon(query);
+        /*String form = "', '";
+        String query = "INSERT INTO test_flights VALUES " + "('" + username + form + flightId + "')";
+        insertUpdateDataCon(query);*/
+        System.out.println(username + ", "+ carrierID);
     }
 
     /*public static void saveFlight(String username, String carrierID, String carrierName, String price ) {
@@ -58,7 +67,7 @@ public class FlightInformation {
         }
      */
 
-    public static void removeFlight(String carrierID, String username){
+    public static void removeFlight(String carrierID, String username) {
         //Not tested yet. Wanted to get save function right first.
         String query = "DELETE * FROM flights WHERE carrier_id = '" + carrierID + "' AND user_id = '" + username + "'";
         selectDataCon(query);

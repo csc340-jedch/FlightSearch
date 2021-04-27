@@ -1,19 +1,33 @@
 package accounts;
 
-import db.ConnectToDB;
+import static db.ConnectToDB.*;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
         // Check if the username exists
         if(usernameExists(username)){
             // Get the real password from the database
-            String correctPassword = getPassword(username);
+
+            //Commented out the encryption until we figure out the hiccup
+            /*String correctPassword = getPassword(username);
+            System.out.println(correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
-            String accountSalt = ConnectToDB.selectDataCon("SELECT salt FROM clients WHERE username='" + username + "");
-            password = Encryption.getEncryptedPassword(password, accountSalt);
+            String accountSalt = selectDataCon("SELECT salt FROM clients WHERE username='" + username + "'");
+            System.out.println(accountSalt);
+            password = Encryption.getEncryptedPassword(password, accountSalt);*/
+
+            //Code under here will work until we get encryption back up
+            String correctPassword = getPassword(username);
+            System.out.println(correctPassword);
+            System.out.println(password);
             return password.equals(correctPassword);
         }
         return false;
@@ -28,21 +42,75 @@ public class AccountLogin {
         System.out.println("Encrypted password: " + encryptedPassword);
 
         // Create a row in the database for the client
+        String form = "', '";
+        String clientData = "('"+username+form+password+form+email+form+phoneNumber+form+firstName+form+lastName+form+birthDate+form+salt+"')";
+        String query = "INSERT INTO clients VALUES "+clientData;
+        insertUpdateDataCon(query);
         //db.QuereyFunk.testClientInsert(username, encryptedPassword, email);
     }
 
     public static boolean usernameExists(String username) {
-        //return db.QuereyFunk.usernameExists(username);
-        return true;
+        String retName = null;
+        String query = "SELECT username FROM clients WHERE username = '"+username+"'";
+        ResultSet result;
+        Statement stmt;
+        System.out.println(query);
+
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while(result.next()) {
+                retName = result.getString("username");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(retName);
+        if(username.equals(retName)){
+            System.out.println("1\n");
+            return true;
+        }else
+            System.out.println("false");
+        return false;
+
     }
 
     public static boolean emailExists(String email) {
-        //return db.QuereyFunk.emailExists(email);
-        return true;
+        String retEmail = null;
+        String query = "SELECT email FROM clients WHERE email = '"+email+"'";
+        ResultSet result;
+        Statement stmt;
+
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while(result.next()) {
+                retEmail = result.getString("email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return email.equals(retEmail);
     }
 
     public static String getPassword(String username) {
-        String query = "SELECT password from clients WHERE username='" + username + "'";
-        return ConnectToDB.selectDataCon(query);
+        String retPass = null;
+        String query = "SELECT password FROM clients WHERE username = '"+username+"'";
+        ResultSet result;
+        Statement stmt;
+
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while(result.next()) {
+                retPass = result.getString("password");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return retPass;
+
     }
+
+
 }

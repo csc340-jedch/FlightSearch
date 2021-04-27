@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static db.ConnectToDB.insertUpdateDataCon;
 import static db.ConnectToDB.testConnect;
 
 public class QuereyFunk {
 
-    //Probably don't need this stuff
 
     /*String clientID;
     String clientFirstName;
@@ -149,8 +149,7 @@ public class QuereyFunk {
                 + this.clientPhone+form + this.clientBirthDate+form+ this.clientGender+form+ this.clientOrigin+form+ this.clientUsername
                 +form+ this.clientPassword+form+ this.clientStatus+"')";
     }
-    public static void testClientInsert( String username, String password, String email, String phoneNumber, String firstName,
-                                         String lastName, String birthDate){
+    public static void testClientInsert(String username, String password, String email){
         String form = "', '";
         String clientData = "('"+username+form+password+form+email+form+phoneNumber+form+firstName+form+lastName+form+birthDate+"')";
         String query = "INSERT INTO clients VALUES "+clientData;

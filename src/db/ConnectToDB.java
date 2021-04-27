@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -46,6 +47,27 @@ public class ConnectToDB {
         }
         return query;
     }
+
+    public static int getNumberOfRows(String title, String value) {
+        int retRows = 0;
+        Statement stmt;
+        ResultSet result;
+        String query = "SELECT COUNT(*) WHERE " + title + " = '" + value + "'";
+
+        try (Connection con = testConnect()) {
+            stmt = con.createStatement();
+            result = stmt.executeQuery(query);
+            while (result.next()) {
+                retRows = result.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return retRows;
+
+    }
 }
+
+
 
 

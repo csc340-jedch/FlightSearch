@@ -15,6 +15,8 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 
+import static db.FlightInformation.saveFlight;
+
 public class SearchFlight {
     public Button searchFlight;
 
@@ -81,12 +83,13 @@ public class SearchFlight {
             ObservableList list = flightTable.getSelectionModel().getSelectedCells();
             TablePosition tablePosition = (TablePosition)list.get(0);
             String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
+            System.out.println(carrierId+"\n");
 
             // Get the username
             String username = Controller.getUsername();
 
             // Save the flight
-            FlightInformation.saveFlight(username, carrierId);
+            saveFlight(username, carrierId);
             System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
         }
         System.out.println("Selected flight: " + selectedIndex);
