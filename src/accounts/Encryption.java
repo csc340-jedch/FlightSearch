@@ -58,3 +58,5 @@ public class Encryption {
         return hashtext;
     }
 }
+
+//look into bcrypt possibly

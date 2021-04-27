@@ -52,12 +52,12 @@ public class FlightInformation {
     }
 
 
-    public static void saveFlight(String username, String carrierID) {
+    public static void saveFlight(String username, int carrierID) {
         //This is not working yet. Not sure why but it saves flight as null, null
-        /*String form = "', '";
-        String query = "INSERT INTO test_flights VALUES " + "('" + username + form + flightId + "')";
-        insertUpdateDataCon(query);*/
-        System.out.println(username + ", "+ carrierID);
+        String form = "', '";
+        String query = "INSERT INTO test_flights VALUES " + "('" + username + form + carrierID + "')";
+        insertUpdateDataCon(query);
+        System.out.println(username + form + carrierID);
     }
 
     /*public static void saveFlight(String username, String carrierID, String carrierName, String price ) {

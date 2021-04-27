@@ -20,7 +20,7 @@ import static db.FlightInformation.saveFlight;
 public class SearchFlight {
     public Button searchFlight;
 
-    public TableView flightTable;
+    public TableView<Flight>flightTable;
     public Button backButton;
     public ComboBox airportComboBox;
     public TableColumn carrierIDColumn;
@@ -80,17 +80,23 @@ public class SearchFlight {
             Controller.showMessage("Your flight has been saved.", "Flight saved");
 
             // Get the selected flight information
-            ObservableList list = flightTable.getSelectionModel().getSelectedCells();
-            TablePosition tablePosition = (TablePosition)list.get(0);
-            String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
-            System.out.println(carrierId+"\n");
+            //ObservableList<TablePosition> list = flightTable.getSelectionModel().getSelectedCells();
+            /*TablePosition tablePosition = (TablePosition)list.get(0);
+            Flight item = flightTable.getItems().get*/
+            //String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
+
+
+            //This grabs the info from the API to be stored in database.
+            Flight item = flightTable.getItems().get(flightTable.getSelectionModel().getSelectedIndex());
+            //System.out.println(item.getCarrierID());
+
 
             // Get the username
             String username = Controller.getUsername();
 
             // Save the flight
-            saveFlight(username, carrierId);
-            System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
+            saveFlight(item.getCarrier(), item.getCarrierID());
+            //System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
         }
         System.out.println("Selected flight: " + selectedIndex);
     }
