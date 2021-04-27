@@ -1,7 +1,6 @@
 package ui;
 
 import accounts.AccountLogin;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
