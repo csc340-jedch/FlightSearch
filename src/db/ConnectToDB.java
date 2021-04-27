@@ -67,17 +67,17 @@ public class ConnectToDB {
 
     }
 
-    public static String getDatabaseValue(String table, String knownTitle,String knownValue,String unkownTitle) {
+    public static String getDatabaseValue(String table, String knownTitle,String knownValue,String unknownTitle) {
         String retVal = null;
         Statement stmt;
         ResultSet result;
-        String query = "SELECT "+unkownTitle+" FROM " + table + " WHERE " + knownTitle + " = '" + knownValue+ "'";
+        String query = "SELECT "+unknownTitle+" FROM " + table + " WHERE " + knownTitle + " = '" + knownValue+ "'";
 
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             while (result.next()) {
-                retVal = result.getString(unkownTitle);
+                retVal = result.getString(unknownTitle);
             }
         } catch (SQLException e) {
             e.printStackTrace();
