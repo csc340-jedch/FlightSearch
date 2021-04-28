@@ -1,13 +1,12 @@
 package accounts;
 
-import static db.ConnectToDB.*;
+import db.ConnectToDB;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
@@ -43,10 +42,9 @@ public class AccountLogin {
 
         // Create a row in the database for the client
         String form = "', '";
-        String clientData = "('"+username+form+password+form+email+form+phoneNumber+form+firstName+form+lastName+form+birthDate+form+salt+"')";
+        String clientData = "('"+username+form+encryptedPassword+form+email+form+phoneNumber+form+firstName+form+lastName+form+birthDate+form+salt+"')";
         String query = "INSERT INTO clients VALUES "+clientData;
-        insertUpdateDataCon(query);
-        //db.QuereyFunk.testClientInsert(username, encryptedPassword, email);
+        ConnectToDB.insertUpdateDataCon(query);
     }
 
     public static boolean usernameExists(String username) {
@@ -56,7 +54,7 @@ public class AccountLogin {
         Statement stmt;
         System.out.println(query);
 
-        try (Connection con = testConnect()) {
+        try (Connection con = ConnectToDB.testConnect()) {
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             while(result.next()) {
@@ -81,7 +79,7 @@ public class AccountLogin {
         ResultSet result;
         Statement stmt;
 
-        try (Connection con = testConnect()) {
+        try (Connection con = ConnectToDB.testConnect()) {
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             while(result.next()) {
@@ -99,7 +97,7 @@ public class AccountLogin {
         ResultSet result;
         Statement stmt;
 
-        try (Connection con = testConnect()) {
+        try (Connection con = ConnectToDB.testConnect()) {
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             while(result.next()) {
