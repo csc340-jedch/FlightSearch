@@ -15,18 +15,13 @@ public class AccountLogin {
             // Get the real password from the database
 
             //Commented out the encryption until we figure out the hiccup
-            /*String correctPassword = getPassword(username);
+            String correctPassword = getPassword(username);
             System.out.println(correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
-            String accountSalt = selectDataCon("SELECT salt FROM clients WHERE username='" + username + "'");
+            String accountSalt = getSalt(username);
             System.out.println(accountSalt);
-            password = Encryption.getEncryptedPassword(password, accountSalt);*/
-
-            //Code under here will work until we get encryption back up
-            String correctPassword = getPassword(username);
-            System.out.println(correctPassword);
-            System.out.println(password);
+            password = Encryption.getEncryptedPassword(password, accountSalt);
             return password.equals(correctPassword);
         }
         return false;
@@ -107,7 +102,10 @@ public class AccountLogin {
             e.printStackTrace();
         }
         return retPass;
+    }
 
+    private static String getSalt(String username) {
+        return ConnectToDB.getDatabaseValue("clients", "username", username, "salt");
     }
 
 
