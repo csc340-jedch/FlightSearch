@@ -49,14 +49,17 @@ public class Login {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
 
+        // Check if username and password is correct
         if (AccountLogin.credentialsAreValid(username, password)) {
-            System.out.println("correct");
-            // Username and password is correct
+            // Update the username in the client
+            Controller.setUsername(username);
 
             if (rememberMeCheckBox.isSelected()) {
+                // Set username and password in local file
                 ConfigManager.writeConfig(username, password);
             }
 
+            // Go to main menu
             Controller controller = Controller.getInstance();
             controller.changePane("menu");
         } else {
