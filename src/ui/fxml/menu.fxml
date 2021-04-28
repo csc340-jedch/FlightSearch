@@ -23,6 +23,7 @@
                 <Menu fx:id="accountDropDown" mnemonicParsing="false" text="Account">
                   <items>
                     <MenuItem fx:id="logoutMenuOption" mnemonicParsing="false" onAction="#logoutMenuOption" text="Logout" />
+                        <MenuItem fx:id="Settings" mnemonicParsing="false" onAction="#SettingsClick" text="Settings" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
