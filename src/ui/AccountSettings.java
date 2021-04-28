@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.io.IOException;
 public class AccountSettings {
     public Button BackButton;
     public TextField usernameTextField;
-    public TextField passwordTextField;
+    public PasswordField passwordField;
     public TextField emailTextField;
     public TextField phoneNumberTextField;
     public TextField firstNameTextField;
@@ -43,7 +44,7 @@ public class AccountSettings {
         birthDate = ConnectToDB.getDatabaseValue("clients", "username", username, "birth_date");
 
         usernameTextField.setText(username);
-        passwordTextField.setText(password);
+        passwordField.setText(password);
         emailTextField.setText(email);
         phoneNumberTextField.setText(phoneNumber);
         firstNameTextField.setText(firstName);
@@ -67,8 +68,8 @@ public class AccountSettings {
         }
 
         // Check if password was changed
-        if (!password.equals(passwordTextField.getText())) {
-            password = passwordTextField.getText();
+        if (!password.equals(passwordField.getText())) {
+            password = passwordField.getText();
             // TODO: Update in the database
         }
 

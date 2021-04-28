@@ -124,10 +124,10 @@
                                        <GridPane.margin>
                                           <Insets right="40.0" />
                                        </GridPane.margin></TextField>
-                                    <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets right="40.0" />
-                                       </GridPane.margin></TextField>
+                                       </GridPane.margin></PasswordField>
                                     <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets right="40.0" />
