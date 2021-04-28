@@ -21,6 +21,7 @@ public class Register {
     public TextField firstNameTextField;
     public TextField lastNameTextField;
     public DatePicker birthDatePicker;
+    public TextField zipCodeTextField;
 
     public void exitButtonClick(ActionEvent actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
@@ -38,8 +39,9 @@ public class Register {
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
 
+        String zipCode = zipCodeTextField.getText();
 
-        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDatePicker.getValue() == null) {
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || zipCode.isEmpty() || birthDatePicker.getValue() == null) {
             Controller.showMessage("Please fill out all fields", "Fill out all information fields");
             return;
         }
@@ -59,7 +61,7 @@ public class Register {
         }
 
         // We are clear to create the account
-        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate);
+        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate, zipCode);
 
         // Go to the main menu
         Controller controller = Controller.getInstance();

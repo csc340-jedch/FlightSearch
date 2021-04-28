@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Register">
    <children>
-      <GridPane layoutX="24.0" layoutY="20.0" prefHeight="376.0" prefWidth="571.0">
+      <GridPane prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="142.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="429.0" minWidth="10.0" prefWidth="357.0" />
@@ -27,14 +27,15 @@
             <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="204.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="204.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Create Account" textFill="WHITE" underline="true">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Button fx:id="createButton" mnemonicParsing="false" onAction="#createButtonClick" text="Create" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonClick" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Button fx:id="createButton" mnemonicParsing="false" onAction="#createButtonClick" text="Create" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitButtonClick" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <GridPane.margin>
                   <Insets left="60.0" />
                </GridPane.margin>
@@ -53,6 +54,8 @@
             <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <DatePicker fx:id="birthDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label text="Zip Code:" textFill="WHITE" GridPane.rowIndex="9" />
+            <TextField fx:id="zipCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
    </children>
