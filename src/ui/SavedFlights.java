@@ -30,8 +30,7 @@ public class SavedFlights {
         carrierColumn.setCellValueFactory(new PropertyValueFactory<>("carrier"));
         quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
 
-        String username = "";
-        Flight[] flights = AccountSavedFlights.getSavedFlights(username);
+        Flight[] flights = AccountSavedFlights.getSavedFlights(Controller.getUsername());
 
         // Show the valid flights
         ObservableList<Flight> list = FXCollections.observableArrayList();
