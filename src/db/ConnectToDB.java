@@ -11,6 +11,7 @@ public class ConnectToDB {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "spass";
     private static final String CONN = "jdbc:mysql://35.237.96.145/jedch_db";
+    private static final String DELIMINATOR = ",";
 
     public static Connection testConnect() throws SQLException {
         //Attempts the connection
@@ -83,7 +84,11 @@ public class ConnectToDB {
             e.printStackTrace();
         }
         return retVal;
+    }
 
+    public static String constructInsertQueryString(String table, String[] values) {
+        String clientData = String.join(ConnectToDB.DELIMINATOR, values);
+        return "INSERT INTO clients VALUES " + clientData;
     }
 }
 

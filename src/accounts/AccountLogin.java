@@ -32,9 +32,8 @@ public class AccountLogin {
         System.out.println("Encrypted password: " + encryptedPassword);
 
         // Create a row in the database for the client
-        String form = "', '";
-        String clientData = "('"+username+form+encryptedPassword+form+email+form+phoneNumber+form+firstName+form+lastName+form+birthDate+form+salt+"')";
-        String query = "INSERT INTO clients VALUES "+clientData;
+        String[] values = { username, encryptedPassword, email, phoneNumber, firstName, lastName, birthDate, salt };
+        String query = ConnectToDB.constructInsertQueryString("clients", values);
         ConnectToDB.insertUpdateDataCon(query);
     }
 
