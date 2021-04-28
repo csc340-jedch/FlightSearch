@@ -41,8 +41,8 @@
             </Button>
             <Label text="Username:" textFill="WHITE" GridPane.rowIndex="1" />
             <TextField fx:id="usernameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Password:" textFill="WHITE" GridPane.rowIndex="2" />
             <Label text="Email:" textFill="WHITE" GridPane.rowIndex="3" />
             <Label text="Phone Number:" textFill="WHITE" GridPane.rowIndex="4" />
