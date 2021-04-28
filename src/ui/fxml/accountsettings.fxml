@@ -42,8 +42,8 @@
                            <children>
                               <GridPane layoutY="-1.0" prefHeight="270.0" prefWidth="588.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="289.0" minWidth="10.0" prefWidth="140.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="448.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -60,52 +60,94 @@
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="Password:" textFill="WHITE" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="Username:" textFill="WHITE">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="Phone Number:" textFill="WHITE" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="First Name:" textFill="WHITE" GridPane.rowIndex="4">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="Last Name:" textFill="WHITE" GridPane.rowIndex="5">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="Birth Date:" textFill="WHITE" GridPane.rowIndex="6">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <Label text="Zip Code:" textFill="WHITE" GridPane.rowIndex="7">
                                        <font>
                                           <Font name="Courier New" size="14.0" />
                                        </font>
+                                       <GridPane.margin>
+                                          <Insets left="6.0" />
+                                       </GridPane.margin>
                                     </Label>
                                     <TextField fx:id="usernameTextField" GridPane.columnIndex="1">
                                        <GridPane.margin>
-                                          <Insets />
+                                          <Insets right="40.0" />
                                        </GridPane.margin></TextField>
-                                    <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField fx:id="zipCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="40.0" />
+                                       </GridPane.margin></TextField>
+                                    <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets right="40.0" />
+                                       </GridPane.margin></TextField>
+                                    <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets right="40.0" />
+                                       </GridPane.margin></TextField>
+                                    <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets right="40.0" />
+                                       </GridPane.margin></TextField>
+                                    <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets right="40.0" />
+                                       </GridPane.margin></TextField>
+                                    <TextField fx:id="zipCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                       <GridPane.margin>
+                                          <Insets right="40.0" />
+                                       </GridPane.margin></TextField>
                                     <DatePicker fx:id="birthDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                  </children>
                               </GridPane>
