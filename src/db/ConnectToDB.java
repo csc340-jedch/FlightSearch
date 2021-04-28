@@ -13,7 +13,7 @@ public class ConnectToDB {
     private static final String CONN = "jdbc:mysql://35.237.96.145/jedch_db";
     private static final String DELIMINATOR = ",";
 
-    public static Connection testConnect() throws SQLException {
+    private static Connection testConnect() throws SQLException {
         //Attempts the connection
         Connection con = null;
         try {
@@ -22,19 +22,6 @@ public class ConnectToDB {
             System.err.print("Did not connect to database: " + e);
         }
         return con;
-    }
-
-    public static String selectDataCon(String query) {
-        //This performs SELECT requests that return results
-        Statement stmt;
-        try (Connection con = testConnect()) {
-            stmt = con.createStatement();
-            stmt.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return query;
     }
 
     public static String insertUpdateDataCon(String query) {
