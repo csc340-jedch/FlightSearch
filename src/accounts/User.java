@@ -18,6 +18,7 @@ public class User implements AccountInterface{
     protected static String password;
     protected static int status;
 
+    //Constructor that creates a User with data needed to fly
     public User(String _name,String _email,String _phoneNumber,String _birthday, String _gender,String _location,String _username,String _password){
         this.name = _name;
         this.email = _email;
@@ -110,11 +111,13 @@ public class User implements AccountInterface{
         status = _status;
     }
 
+    //Gets the UserName from the scanner
     public String inputUserName(){
         System.out.println("What is your Username");
         return in.nextLine().toLowerCase();
     }
 
+    //Gets the Password from the scanner
     public String inputPassword(){
         System.out.println("What is your password");
         return in.nextLine();
@@ -137,6 +140,7 @@ public class User implements AccountInterface{
         throw new InactiveAccountException("Can't find account");
     }
 
+    //Checks credentials inputted from the scanner and returns the User data
     public User login() throws InvalidPasswordException, InactiveAccountException {
         User account = searchAccount();
         String password = inputPassword();
@@ -150,6 +154,7 @@ public class User implements AccountInterface{
         }
     }
 
+    //Sets status as INACTIVE_ACCOUNT as a soft delete
     public void deleteAccount() throws InactiveAccountException, InvalidPasswordException {
         User account = login();
         account.resetStatus(INACTIVE_ACCOUNT);
