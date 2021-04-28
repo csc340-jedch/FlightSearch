@@ -16,10 +16,10 @@ import java.io.IOException;
 public class SavedFlights {
     public Button exitButton;
     public Button deleteFlightButton;
-    public TableView flightsTableView;
-    public TableColumn carrierIdColumn;
-    public TableColumn carrierColumn;
-    public TableColumn quoteColumn;
+    public TableView<Flight> flightsTableView;
+    public TableColumn<String, String> carrierIdColumn;
+    public TableColumn<String, String> carrierColumn;
+    public TableColumn<String, String> quoteColumn;
 
     @FXML
     protected void initialize() {

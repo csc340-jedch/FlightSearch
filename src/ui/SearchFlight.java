@@ -22,10 +22,10 @@ public class SearchFlight {
 
     public TableView<Flight>flightTable;
     public Button backButton;
-    public ComboBox airportComboBox;
-    public TableColumn carrierIDColumn;
-    public TableColumn carrierColumn;
-    public TableColumn priceColumnColumn;
+    public ComboBox<String> airportComboBox;
+    public TableColumn<String, String> carrierIDColumn;
+    public TableColumn<String, String> carrierColumn;
+    public TableColumn<String, String> priceColumnColumn;
     public DatePicker flightDatePicker;
     public Button saveFlightButton;
 
