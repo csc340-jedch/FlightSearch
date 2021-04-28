@@ -55,7 +55,7 @@ public class AccountLogin {
 
     public static String getPassword(String username) {
         // Get and return the password
-        return ConnectToDB.getDatabaseValue("clients", "username", username, "email");
+        return ConnectToDB.getDatabaseValue("clients", "username", username, "password");
     }
 
     private static String getSalt(String username) {
