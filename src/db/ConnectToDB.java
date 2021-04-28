@@ -24,7 +24,7 @@ public class ConnectToDB {
         return con;
     }
 
-    public static String insertUpdateDataCon(String query) {
+    public static void insertUpdateDataCon(String query) {
         //This performs INSERT, UPDATE, and DELETE actions
         Statement stmt;
         try (Connection con = testConnect()) {
@@ -33,7 +33,6 @@ public class ConnectToDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return query;
     }
 
     public static int getNumberOfRows(String table, String title, String value) {
