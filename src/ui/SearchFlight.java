@@ -3,7 +3,7 @@ package ui;
 import api.Flight;
 import api.GetFlightData;
 import api.NotDirectFlightException;
-import db.FlightInformation;
+import db.ConnectToDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +32,7 @@ public class SearchFlight {
     @FXML
     protected void initialize() {
         // Populate the departure airport combobox
-        String zip = "27713";
+        String zip = ConnectToDB.getDatabaseValue("clients", "username", Controller.getUsername(), "zip_code");
         String[] airports = GetFlightData.getLocalAirports(zip);
         airportComboBox.getItems().addAll(airports);
 
