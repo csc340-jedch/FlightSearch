@@ -5,11 +5,14 @@ public class Flight {
     private final String carrier;
     private final int quote;
 
-    public Flight(int carrierID, String carrier, int quote) {
-        this.carrierID = carrierID;
-        this.carrier = carrier;
-        this.quote = quote;
+    //Constructor for FLight Object
+    public Flight(int _carrierID, String _carrier, int _quote) {
+        this.carrierID = _carrierID;
+        this.carrier = _carrier;
+        this.quote = _quote;
     }
+
+    //=================  GETTERS ===============
 
     public int getCarrierID() {
         return carrierID;
@@ -22,4 +25,5 @@ public class Flight {
     public int getQuote() {
         return quote;
     }
+
 }
