@@ -1,5 +1,6 @@
 package ui;
 
+import accounts.AccountSavedFlights;
 import api.Flight;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,10 +30,8 @@ public class SavedFlights {
         carrierColumn.setCellValueFactory(new PropertyValueFactory<>("carrier"));
         quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
 
-        // TODO: Get saved flights
-        Flight flight1 = new Flight(1, "A", 450);
-        Flight flight2 = new Flight(2, "B", 320);
-        Flight[] flights = { flight1, flight2 };
+        String username = "";
+        Flight[] flights = AccountSavedFlights.getSavedFlights(username);
 
         // Show the valid flights
         ObservableList<Flight> list = FXCollections.observableArrayList();
