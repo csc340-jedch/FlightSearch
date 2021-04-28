@@ -3,10 +3,6 @@ package accounts;
 import db.ConnectToDB;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
@@ -43,65 +39,24 @@ public class AccountLogin {
     }
 
     public static boolean usernameExists(String username) {
-        String retName = null;
-        String query = "SELECT username FROM clients WHERE username = '"+username+"'";
-        ResultSet result;
-        Statement stmt;
-        System.out.println(query);
+        // Get the number of rows where the username exists.
+        int rows = ConnectToDB.getNumberOfRows("clients", "username", username);
 
-        try (Connection con = ConnectToDB.testConnect()) {
-            stmt = con.createStatement();
-            result = stmt.executeQuery(query);
-            while(result.next()) {
-                retName = result.getString("username");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println(retName);
-        if(username.equals(retName)){
-            System.out.println("1\n");
-            return true;
-        }else
-            System.out.println("false");
-        return false;
-
+        // rows will be greater than 0 if the username exists.
+        return rows > 0;
     }
 
     public static boolean emailExists(String email) {
-        String retEmail = null;
-        String query = "SELECT email FROM clients WHERE email = '"+email+"'";
-        ResultSet result;
-        Statement stmt;
+        // Get the number of rows where the username exists.
+        int rows = ConnectToDB.getNumberOfRows("clients", "email", email);
 
-        try (Connection con = ConnectToDB.testConnect()) {
-            stmt = con.createStatement();
-            result = stmt.executeQuery(query);
-            while(result.next()) {
-                retEmail = result.getString("email");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return email.equals(retEmail);
+        // rows will be greater than 0 if the email exists.
+        return rows > 0;
     }
 
     public static String getPassword(String username) {
-        String retPass = null;
-        String query = "SELECT password FROM clients WHERE username = '"+username+"'";
-        ResultSet result;
-        Statement stmt;
-
-        try (Connection con = ConnectToDB.testConnect()) {
-            stmt = con.createStatement();
-            result = stmt.executeQuery(query);
-            while(result.next()) {
-                retPass = result.getString("password");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return retPass;
+        // Get and return the password
+        return ConnectToDB.getDatabaseValue("clients", "username", username, "email");
     }
 
     private static String getSalt(String username) {

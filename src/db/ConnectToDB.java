@@ -48,11 +48,11 @@ public class ConnectToDB {
         return query;
     }
 
-    public static int getNumberOfRows(String title, String value) {
+    public static int getNumberOfRows(String table, String title, String value) {
         int retRows = 0;
         Statement stmt;
         ResultSet result;
-        String query = "SELECT COUNT(*) WHERE " + title + " = '" + value + "'";
+        String query = "SELECT COUNT(*) FROM " + table + " WHERE " + title + " = '" + value + "'";
 
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
