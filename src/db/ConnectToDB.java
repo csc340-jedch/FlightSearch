@@ -11,7 +11,7 @@ public class ConnectToDB {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "spass";
     private static final String CONN = "jdbc:mysql://35.237.96.145/jedch_db";
-    private static final String DELIMINATOR = ",";
+    private static final String DELIMINATOR = "', '";
 
     private static Connection testConnect() throws SQLException {
         //Attempts the connection
@@ -72,9 +72,21 @@ public class ConnectToDB {
         return retVal;
     }
 
-    public static String constructInsertQueryString(String table, String[] values) {
+    /*public static String getFlightRowInfo(String username){
+
+    }*/
+
+    public static String constructFlightInsertQueryString(String table, String[] values) {
         String clientData = String.join(ConnectToDB.DELIMINATOR, values);
-        return "INSERT INTO clients VALUES " + clientData;
+        return "INSERT INTO test_flights VALUES ('" + clientData + "')";
+        //String flightInsert = "INSERT INTO test_flights VALUES ('" + values[0] + "', '" + values[1] + "', '" + values[2] + "', '" + values[3] + "')";
+        //System.out.println(flightInsert);
+        //return flightInsert;
+    }
+
+    public static String constructClientInsertQueryString(String table, String[] values) {
+        String clientData = String.join(ConnectToDB.DELIMINATOR, values);
+        return "INSERT INTO clients VALUES ('" + clientData + "')";
     }
 }
 

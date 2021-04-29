@@ -15,9 +15,9 @@ public class AccountLogin {
             System.out.println(correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
-            String accountSalt = getSalt(username);
+            /*String accountSalt = getSalt(username);
             System.out.println(accountSalt);
-            password = Encryption.getEncryptedPassword(password, accountSalt);
+            password = Encryption.getEncryptedPassword(password, accountSalt);*/
             return password.equals(correctPassword);
         }
         return false;
@@ -25,6 +25,7 @@ public class AccountLogin {
 
     public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String zipCode) throws NoSuchAlgorithmException {
         // Generate salt for encryption
+
         String salt = Encryption.getRandomSalt();
         System.out.println("Salt: " + salt);
 
@@ -33,8 +34,8 @@ public class AccountLogin {
 
         // Create a row in the database for the client
         // TODO: Add zipcode to values once Logan updates the database schema
-        String[] values = { username, encryptedPassword, email, phoneNumber, firstName, lastName, birthDate, salt };
-        String query = ConnectToDB.constructInsertQueryString("clients", values);
+        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, zipCode };
+        String query = ConnectToDB.constructClientInsertQueryString("clients", values);
         ConnectToDB.insertUpdateDataCon(query);
     }
 

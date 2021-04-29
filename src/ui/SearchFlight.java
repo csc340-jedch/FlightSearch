@@ -32,7 +32,7 @@ public class SearchFlight {
     @FXML
     protected void initialize() {
         // Populate the departure airport combobox
-        String zip = ConnectToDB.getDatabaseValue("clients", "username", Controller.getUsername(), "zip_code");
+        String zip = ConnectToDB.getDatabaseValue("clients", "username", Controller.getUsername(), "zipCode");
         String[] airports = GetFlightData.getLocalAirports(zip);
         airportComboBox.getItems().addAll(airports);
 
@@ -93,9 +93,12 @@ public class SearchFlight {
 
             // Get the username
             String username = Controller.getUsername();
+            int carrierID = item.getCarrierID();
+            String carrier = item.getCarrier();
+            int quote =item.getQuote();
 
             // Save the flight
-            saveFlight(item.getCarrier(), item.getCarrierID());
+            saveFlight(username, carrierID, carrier, quote);
             //System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
         }
         System.out.println("Selected flight: " + selectedIndex);

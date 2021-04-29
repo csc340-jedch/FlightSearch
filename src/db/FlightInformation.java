@@ -49,10 +49,10 @@ public class FlightInformation {
     }
 
 
-    public static void saveFlight(String username, int carrierID) {
+    public static void saveFlight(String clientUsername, int carrierID, String carrier, int price) {
         //This is not working yet. Not sure why but it saves flight as null, null
-        String[] values = { username, String.valueOf(carrierID) };
-        String query = ConnectToDB.constructInsertQueryString("test_flights", values);
+        String[] values = { String.valueOf(clientUsername), String.valueOf(carrierID), String.valueOf(carrier), String.valueOf(price)};
+        String query = ConnectToDB.constructFlightInsertQueryString("test_flights", values);
         ConnectToDB.insertUpdateDataCon(query);
         System.out.println(query);
     }

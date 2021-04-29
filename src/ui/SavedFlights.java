@@ -17,6 +17,7 @@ public class SavedFlights {
     public Button exitButton;
     public Button deleteFlightButton;
     public TableView<Flight> flightsTableView;
+    public TableColumn<String, String> usernameColumn;
     public TableColumn<String, String> carrierIdColumn;
     public TableColumn<String, String> carrierColumn;
     public TableColumn<String, String> quoteColumn;
@@ -26,6 +27,7 @@ public class SavedFlights {
         // TODO: Populate flights
 
         // Set column ids
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         carrierIdColumn.setCellValueFactory(new PropertyValueFactory<>("carrierID"));
         carrierColumn.setCellValueFactory(new PropertyValueFactory<>("carrier"));
         quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
