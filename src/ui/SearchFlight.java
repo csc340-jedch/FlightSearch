@@ -1,9 +1,6 @@
 package ui;
 
-import api.Flight;
-import api.GetFlightData;
-import api.NoNearbyAirportsException;
-import api.NotDirectFlightException;
+import api.*;
 import db.ConnectToDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,7 +31,10 @@ public class SearchFlight {
     protected void initialize() throws NoNearbyAirportsException, JSONException, IOException {
         // Populate the departure airport combobox
         String zip = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, Controller.getUsername(), ConnectToDB.COL_ZIP);
-        String[] airports = GetFlightData.getLocalAirports(zip);
+
+        ClosestAirport airport = new ClosestAirport(zip);
+
+        String[] airports = airport.getLocalAirports();
 
         // We have no airports to use
         if (airports.length == 0) {
