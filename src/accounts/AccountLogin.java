@@ -9,17 +9,15 @@ public class AccountLogin {
 
         // Check if the username exists
         if(usernameExists(_username) && ConnectToDB.getDatabaseValue("clients", "username", _username, "status") != "1"){
-            // Get the real password from the database
 
-            //Commented out the encryption until we figure out the hiccup
+            // Get the real password from the database
             String correctPassword = getPassword(_username);
-            System.out.println("correctPassword:" +correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
             String accountSalt = getSalt(_username);
-            System.out.println("accountSalt:" + accountSalt);
+
             _password = Encryption.getEncryptedPassword(_password, accountSalt);
-            System.out.println("password:" + _password);
+
             return _password.equals(correctPassword);
         }
         return false;
