@@ -79,16 +79,11 @@ public class SearchFlight {
         } else {
             Controller.showMessage("Your flight has been saved.", "Flight saved");
 
-            // Get the selected flight information
-            //ObservableList<TablePosition> list = flightTable.getSelectionModel().getSelectedCells();
-            /*TablePosition tablePosition = (TablePosition)list.get(0);
-            Flight item = flightTable.getItems().get*/
-            //String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
 
 
             //This grabs the info from the API to be stored in database.
             Flight item = flightTable.getItems().get(flightTable.getSelectionModel().getSelectedIndex());
-            //System.out.println(item.getCarrierID());
+
 
 
             // Get the username
@@ -99,7 +94,7 @@ public class SearchFlight {
 
             // Save the flight
             saveFlight(username, carrierID, carrier, quote);
-            //System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
+
         }
         System.out.println("Selected flight: " + selectedIndex);
     }

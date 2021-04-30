@@ -24,10 +24,11 @@ public class ConnectToDB {
     public static final String COL_PHONE = "phone";
     public static final String COL_FNAME = "first_name";
     public static final String COL_LNAME = "last_name";
-    public static final String COL_ZIP = "zipCode";
     public static final String COL_BIRTH = "birth_date";
+    public static final String COL_ZIP = "zipCode";
     public static final String COL_GENDER = "gender";
     public static final String COL_SALT = "salt";
+    public static final String COL_STATUS = "status";
 
     private static Connection testConnect() throws SQLException {
         //Attempts the connection
@@ -42,6 +43,7 @@ public class ConnectToDB {
 
     public static void insertUpdateDataCon(String query) {
         //This performs INSERT, UPDATE, and DELETE actions
+        System.out.println(query);
         Statement stmt;
         try (Connection con = testConnect()) {
             stmt = con.createStatement();

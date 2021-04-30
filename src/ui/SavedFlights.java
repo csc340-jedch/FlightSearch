@@ -2,6 +2,7 @@ package ui;
 
 import accounts.AccountSavedFlights;
 import api.Flight;
+import db.FlightInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

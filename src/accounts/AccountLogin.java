@@ -4,9 +4,9 @@ import db.ConnectToDB;
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
-        return true;
+       // return true;
 
-        /*
+
         // Check if the username exists
         if(usernameExists(username)){
             // Get the real password from the database
@@ -23,7 +23,7 @@ public class AccountLogin {
             System.out.println("password:" + password);
             return password.equals(correctPassword);
         }
-        return false;*/
+        return false;
     }
 
     public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String gender, String zipCode) {
@@ -37,8 +37,9 @@ public class AccountLogin {
 
         // Create a row in the database for the client
         String status = "1";
-        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, gender, zipCode, status};
+        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, zipCode, gender, salt, status};
         String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_CLIENTS, values);
+        System.out.println(query);
         ConnectToDB.insertUpdateDataCon(query);
     }
 
