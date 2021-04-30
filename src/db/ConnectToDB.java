@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectToDB {
+
     //Creates the connection request
     private static final String USERNAME = "root";
     private static final String PASSWORD = "spass";
@@ -107,7 +108,3 @@ public class ConnectToDB {
         insertUpdateDataCon(query);
     }
 }
-
-
-
-

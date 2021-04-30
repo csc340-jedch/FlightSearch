@@ -4,9 +4,8 @@ import db.ConnectToDB;
 import ui.Controller;
 
 public class AccountLogin {
-    public static boolean credentialsAreValid(String _username, String _password) {
-       // return true;
 
+    public static boolean credentialsAreValid(String _username, String _password) {
 
         // Check if the username exists
         if(usernameExists(_username)){
@@ -71,6 +70,7 @@ public class AccountLogin {
     }
 
     public static void deactivateAccount(String _username) {
+        // Sets users status to inactive
         ConnectToDB.clientUpdate(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_STATUS, "-1", ConnectToDB.COL_USERNAME, _username);
     }
 
