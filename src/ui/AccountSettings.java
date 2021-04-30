@@ -117,8 +117,8 @@ public class AccountSettings {
         }
 
         if (!gender.equals(zipCodeTextField.getText())) {
-            gender = zipCodeTextField.getText();
-            clientUpdate("clients","zip_code", zipCode, "username", username);
+            zipCode = zipCodeTextField.getText();
+            clientUpdate("clients","zipCode", zipCode, "username", username);
         }
 
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
