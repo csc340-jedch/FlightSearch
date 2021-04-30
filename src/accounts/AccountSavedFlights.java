@@ -9,7 +9,6 @@ import static db.ConnectToDB.getDatabaseValue;
 public class AccountSavedFlights {
 
 
-
     public static Flight[] getSavedFlights(String _username) {
         // Gene: Logan, we will want to integrate this with the database and get the list of flights for this user
         // Below is an example of what we would need to do.
@@ -21,7 +20,7 @@ public class AccountSavedFlights {
         int fUuid = Integer.parseInt(getDatabaseValue("flight_table", "username", _username, "flight_uuid"));
         System.out.println(fUuid);
         Flight[] flights = new Flight[count];
-        for( int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             int carrierID = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier_id"));
             String carrier = getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier");
             int quote = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "quote"));

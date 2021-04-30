@@ -14,7 +14,7 @@ public class ClosestAirport {
     private final String zipCode;
     private final int MAX_AIRPORT_OPTIONS = 4;
 
-    public ClosestAirport(String _zipCode){
+    public ClosestAirport(String _zipCode) {
         this.zipCode = _zipCode;
     }
 
