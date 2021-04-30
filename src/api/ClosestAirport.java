@@ -62,15 +62,16 @@ public class ClosestAirport {
         return null;
     }
 
-    public ArrayList<String> findAirports() throws JSONException, NoNearbyAirportsException {
+    public String[] findAirports() throws JSONException, NoNearbyAirportsException {
         try {
             JSONArray array = getAirportInfo();
+            String[] airports = new String[Integer.parseInt(AIRPORTOPTIONS)];
             ArrayList<String> airportCodes = new ArrayList<>();
             for (int i = 0; i < Integer.parseInt(AIRPORTOPTIONS); i++) {
                 JSONObject object = array.getJSONObject(i);
-                airportCodes.add(object.getString("code"));
+                airports[i] = object.getString("code");
             }
-            return airportCodes;
+            return airports;
         } catch (Exception e) {
             throw new NoNearbyAirportsException("No nearby Airports");
         }
