@@ -73,7 +73,8 @@ public class ClosestAirport {
             }
             return airports;
         } catch (Exception e) {
-            throw new NoNearbyAirportsException("No nearby Airports");
+            e.printStackTrace();
+            return new String[0];
         }
     }
 }
