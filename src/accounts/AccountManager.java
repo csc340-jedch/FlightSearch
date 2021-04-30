@@ -41,7 +41,7 @@ public class AccountManager {
 
         // Create a row in the database for the client
         String status = "1";
-        String[] values = {_username, encryptedPassword, _email, _phoneNumber, _firstName, _lastName, _birthDate, _zipCode, _gender, salt, status};
+        String[] values = {_username, encryptedPassword, _email, _phoneNumber, _firstName, _lastName, _birthDate, _zipCode, _gender, salt.replace("'", "''"), status};
         String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_CLIENTS, values);
         System.out.println(query);
         ConnectToDB.insertUpdateDataCon(query);
