@@ -34,9 +34,7 @@ public class AccountSettings {
     private String lastName;
     private String birthDate;
     private String zipCode;
-    private String salt;
     private String gender;
-    private String status;
 
 
     @FXML
@@ -54,10 +52,7 @@ public class AccountSettings {
         lastName = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_LNAME);
         birthDate = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_BIRTH);
         zipCode = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_ZIP);
-        salt = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_SALT);
         gender = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_GENDER);
-        status = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_STATUS);
-
 
         usernameTextField.setText(username);
         passwordField.setText(password);
