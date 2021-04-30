@@ -59,4 +59,3 @@ public class Encryption {
     }
 }
 
-//look into bcrypt possibly
