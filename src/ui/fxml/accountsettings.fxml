@@ -188,7 +188,7 @@
                                           <Insets left="6.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Button fx:id="deactivateButton" mnemonicParsing="false" onAction="#deactivateButtonClick" text="Deactive Account" GridPane.columnIndex="1" />
+                                    <Button fx:id="deactivateButton" mnemonicParsing="false" onAction="#deactivateButtonClick" text="Deactivate Account" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </children></AnchorPane>
