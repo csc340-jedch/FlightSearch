@@ -19,8 +19,6 @@ public class AccountLogin {
             }
 
             // Get the real password from the database
-
-            //Commented out the encryption until we figure out the hiccup
             String correctPassword = getPassword(_username);
             System.out.println("correctPassword:" +correctPassword);
 

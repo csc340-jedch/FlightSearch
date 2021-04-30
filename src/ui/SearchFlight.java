@@ -2,6 +2,7 @@ package ui;
 
 import api.Flight;
 import api.GetFlightData;
+import api.NoNearbyAirportsException;
 import api.NotDirectFlightException;
 import db.ConnectToDB;
 import javafx.collections.FXCollections;
@@ -30,7 +31,7 @@ public class SearchFlight {
     public Button saveFlightButton;
 
     @FXML
-    protected void initialize() {
+    protected void initialize() throws NoNearbyAirportsException, JSONException {
         // Populate the departure airport combobox
         String zip = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, Controller.getUsername(), ConnectToDB.COL_ZIP);
         String[] airports = GetFlightData.getLocalAirports(zip);

@@ -98,7 +98,7 @@ public class ConnectToDB {
         if(_table.equals("flight_table")){
             return "INSERT INTO " + _table +" VALUES (DEFAULT, '" + clientData + "')";
         }else
-        return "INSERT INTO " + _table +" VALUES ('" + clientData + "')";
+        return "INSERT INTO " + _table +" VALUES (DEFAULT, '" + clientData + "')";
     }
 
     public static void clientUpdate(String _table, String _changeTitle, String _newValue, String _knownTitle, String _knownValue){
