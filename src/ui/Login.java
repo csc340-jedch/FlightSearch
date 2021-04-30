@@ -35,7 +35,7 @@ public class Login {
         }
     }
 
-    public void loginButtonClick(ActionEvent actionEvent) throws IOException {
+    public void loginButtonClick(ActionEvent _actionEvent) throws IOException {
         login();
     }
 
@@ -68,7 +68,7 @@ public class Login {
         }
     }
 
-    public void registerButtonClick(ActionEvent actionEvent) throws IOException {
+    public void registerButtonClick(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("register");
     }

@@ -33,7 +33,7 @@ public class Menu extends ClassLoader {
         accountDropDown.setText(Controller.getUsername());
     }
 
-    public void searchFlightClick(ActionEvent actionEvent) throws IOException {
+    public void searchFlightClick(ActionEvent _actionEvent) throws IOException {
         System.out.println("Searching flight!");
 
         // Get the parent (Menu) and let it know we are switching scenes.
@@ -45,22 +45,22 @@ public class Menu extends ClassLoader {
         controller.changePane("searchflight");
     }
 
-    public void logoutMenuOption(ActionEvent actionEvent) throws IOException {
+    public void logoutMenuOption(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("login");
     }
 
-    public void aboutButtonClick(ActionEvent actionEvent) throws IOException {
+    public void aboutButtonClick(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("help");
     }
 
-    public void viewSavedFlights(ActionEvent actionEvent) throws IOException {
+    public void viewSavedFlights(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("savedflights");
     }
 
-    public void SettingsClick(ActionEvent actionEvent) throws IOException {
+    public void SettingsClick(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("accountsettings");
     }

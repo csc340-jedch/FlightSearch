@@ -67,12 +67,12 @@ public class AccountSettings {
         birthDatePicker.setValue(date);
     }
 
-    public void BackButtonClick(ActionEvent actionEvent) throws IOException {
+    public void BackButtonClick(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("menu");
     }
 
-    public void saveChangesButtonClick(ActionEvent actionEvent) {
+    public void saveChangesButtonClick(ActionEvent _actionEvent) {
         // Check if username was changed
         String origUsername = username;
         if (!username.equals(usernameTextField.getText())) {
@@ -123,7 +123,7 @@ public class AccountSettings {
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
     }
 
-    public void deactivateButtonClick(ActionEvent actionEvent) {
+    public void deactivateButtonClick(ActionEvent _actionEvent) {
         // Send the user a conformation dialog
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
         dialog.setTitle("Deactivate Account");
