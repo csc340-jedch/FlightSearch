@@ -18,7 +18,8 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="124.0" minHeight="0.0" prefHeight="64.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="282.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="248.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Help Section" textFill="WHITE" underline="true" GridPane.valignment="TOP">
@@ -37,6 +38,6 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Button fx:id="backButton" layoutX="15.0" layoutY="360.0" mnemonicParsing="false" onAction="#backButtonClick" text="Back to Main Menu" />
+      <Button fx:id="backButton" layoutX="15.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClick" text="Back to Menu" />
    </children>
 </AnchorPane>

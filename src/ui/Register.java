@@ -1,6 +1,6 @@
 package ui;
 
-import accounts.AccountLogin;
+import accounts.AccountManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -55,19 +55,19 @@ public class Register {
         String gender = genderComboBox.getValue().toString();
 
         // Check if username already exists
-        if (AccountLogin.usernameExists(username)) {
+        if (AccountManager.usernameExists(username)) {
             Controller.showMessage("An account with this username already exists.", "Username already taken");
             return;
         }
 
         // Check if email already exists
-        if (AccountLogin.emailExists(email)) {
+        if (AccountManager.emailExists(email)) {
             Controller.showMessage("An account with this email already exists.", "Email already taken");
             return;
         }
 
         // We are clear to create the account
-        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate, gender, zipCode);
+        AccountManager.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate, gender, zipCode);
 
         // Set the username of the new account
         Controller.setUsername(username);

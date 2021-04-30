@@ -1,6 +1,6 @@
 package ui;
 
-import accounts.AccountLogin;
+import accounts.AccountManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -50,7 +50,7 @@ public class Login {
         String password = passwordField.getText();
 
         // Check if username and password is correct
-        if (AccountLogin.credentialsAreValid(username, password)) {
+        if (AccountManager.credentialsAreValid(username, password)) {
             // Update the username in the client
             Controller.setUsername(username);
 
