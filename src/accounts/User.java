@@ -18,6 +18,7 @@ public class User implements AccountInterface{
     protected static String password;
     protected static int status;
 
+    //Constructor
     public User(String _name,String _email,String _phoneNumber,String _birthday, String _gender,String _location,String _username,String _password){
         this.name = _name;
         this.email = _email;
@@ -110,20 +111,20 @@ public class User implements AccountInterface{
         status = _status;
     }
 
+
+    //Gets username from the scanner
     public String inputUserName(){
         System.out.println("What is your Username");
         return in.nextLine().toLowerCase();
     }
 
+    //gets password from the scanner
     public String inputPassword(){
         System.out.println("What is your password");
         return in.nextLine();
     }
 
-    //Next part needs to search through database for usernames.
-    // Checks if one is there
-    // Get information from the database
-    //DOESNT WORK NOW
+    //Looks for account in the database
     private User searchAccount() throws InactiveAccountException, InvalidPasswordException {
         String username = inputUserName();
         //finds account
@@ -137,6 +138,7 @@ public class User implements AccountInterface{
         throw new InactiveAccountException("Can't find account");
     }
 
+    //Logs into an account
     public User login() throws InvalidPasswordException, InactiveAccountException {
         User account = searchAccount();
         String password = inputPassword();
@@ -150,11 +152,14 @@ public class User implements AccountInterface{
         }
     }
 
+    //Soft deletes an account
     public void deleteAccount() throws InactiveAccountException, InvalidPasswordException {
         User account = login();
         account.resetStatus(INACTIVE_ACCOUNT);
         System.out.println("Account Deleted");
     }
+
+
 
     @Override
     public String toString() {

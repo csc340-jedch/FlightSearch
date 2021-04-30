@@ -7,6 +7,8 @@ Due Date: April 30, 2021
 
 Professor: Ike Quigley
 
+Team: Jeffery Epstein Didn't Compile Himself
+
 ## Project Quicklinks
 [API Code](https://github.com/csc340-jedch/FlightSearch/tree/main/src/api)
 

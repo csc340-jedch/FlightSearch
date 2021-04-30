@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 public interface FlightDataInterface {
 
-    public String getPrice() throws JSONException, NotDirectFlightException;
+    public int getPrice(int _index) throws JSONException, NotDirectFlightException;
 
     public String getCarrier(int _index) throws JSONException, NotDirectFlightException;
 
@@ -15,5 +15,4 @@ public interface FlightDataInterface {
         return null;
     }
 
-    public int isDirectFlight() throws JSONException, NotDirectFlightException;
 }
