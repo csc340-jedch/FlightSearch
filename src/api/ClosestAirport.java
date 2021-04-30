@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class ClosestAirport {
 
@@ -25,6 +24,12 @@ public class ClosestAirport {
         String baseUrl = "https://nearby-airport.p.rapidapi.com/airport/nearby?longitude=";
         String latitude = location.getLatitude();
         String longitude = location.getLongitude();
+
+        // Check if latitude and longitude are valid before using API.
+        if (latitude == null || longitude == null) {
+            return null;
+        }
+
         String urlString = baseUrl + longitude + "&latitude=" + latitude + "&limit=" + AIRPORTOPTIONS;
         URL url;
         try {
@@ -63,17 +68,19 @@ public class ClosestAirport {
     }
 
     public String[] findAirports() throws JSONException, NoNearbyAirportsException {
-        try {
-            JSONArray array = getAirportInfo();
-            String[] airports = new String[Integer.parseInt(AIRPORTOPTIONS)];
-            ArrayList<String> airportCodes = new ArrayList<>();
-            for (int i = 0; i < Integer.parseInt(AIRPORTOPTIONS); i++) {
-                JSONObject object = array.getJSONObject(i);
-                airports[i] = object.getString("code");
-            }
-            return airports;
-        } catch (Exception e) {
-            throw new NoNearbyAirportsException("No nearby Airports");
+        JSONArray array = getAirportInfo();
+
+        // If we do not have valid airport info, there is no airport info to show.
+        if (array == null) {
+            return new String[0];
         }
+
+        String[] airports = new String[Integer.parseInt(AIRPORTOPTIONS)];
+
+        for (int i = 0; i < Integer.parseInt(AIRPORTOPTIONS); i++) {
+            JSONObject object = array.getJSONObject(i);
+            airports[i] = object.getString("code");
+        }
+        return airports;
     }
 }

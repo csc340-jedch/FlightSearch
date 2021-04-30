@@ -139,10 +139,6 @@ public class GetFlightData implements FlightDataInterface {
 
         ClosestAirport close = new ClosestAirport(new Location(zipcode));
 
-        String[] airports = close.findAirports(); //Causes issues
-
-        String [] tempFix = {"LAX"};
-
-        return tempFix; //return airports;
+        return close.findAirports();
     }
 }
