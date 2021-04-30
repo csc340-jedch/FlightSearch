@@ -2,10 +2,8 @@ package ui;
 
 import accounts.AccountLogin;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +19,15 @@ public class Register {
     public TextField firstNameTextField;
     public TextField lastNameTextField;
     public DatePicker birthDatePicker;
+    public TextField zipCodeTextField;
+    public ComboBox<String> genderComboBox;
+
+    @FXML
+    protected void initialize() {
+        // Populate genders combobox choices
+        String[] genders = {"Male", "Female", "Other"};
+        genderComboBox.getItems().addAll(genders);
+    }
 
     public void exitButtonClick(ActionEvent actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
@@ -38,13 +45,15 @@ public class Register {
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
 
+        String zipCode = zipCodeTextField.getText();
 
-        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || birthDatePicker.getValue() == null) {
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || zipCode.isEmpty() || genderComboBox.getValue() == null || birthDatePicker.getValue() == null) {
             Controller.showMessage("Please fill out all fields", "Fill out all information fields");
             return;
         }
 
         String birthDate = birthDatePicker.getValue().toString();
+        String gender = genderComboBox.getValue().toString();
 
         // Check if username already exists
         if (AccountLogin.usernameExists(username)) {
@@ -59,7 +68,7 @@ public class Register {
         }
 
         // We are clear to create the account
-        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate);
+        AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate, gender, zipCode);
 
         // Go to the main menu
         Controller controller = Controller.getInstance();

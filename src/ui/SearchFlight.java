@@ -3,7 +3,7 @@ package ui;
 import api.Flight;
 import api.GetFlightData;
 import api.NotDirectFlightException;
-import db.FlightInformation;
+import db.ConnectToDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,22 +15,24 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 
+import static db.FlightInformation.saveFlight;
+
 public class SearchFlight {
     public Button searchFlight;
 
-    public TableView flightTable;
+    public TableView<Flight>flightTable;
     public Button backButton;
-    public ComboBox airportComboBox;
-    public TableColumn carrierIDColumn;
-    public TableColumn carrierColumn;
-    public TableColumn priceColumnColumn;
+    public ComboBox<String> airportComboBox;
+    public TableColumn<String, String> carrierIDColumn;
+    public TableColumn<String, String> carrierColumn;
+    public TableColumn<String, String> priceColumnColumn;
     public DatePicker flightDatePicker;
     public Button saveFlightButton;
 
     @FXML
     protected void initialize() {
         // Populate the departure airport combobox
-        String zip = "27713";
+        String zip = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, Controller.getUsername(), ConnectToDB.COL_ZIP);
         String[] airports = GetFlightData.getLocalAirports(zip);
         airportComboBox.getItems().addAll(airports);
 
@@ -77,17 +79,18 @@ public class SearchFlight {
         } else {
             Controller.showMessage("Your flight has been saved.", "Flight saved");
 
-            // Get the selected flight information
-            ObservableList list = flightTable.getSelectionModel().getSelectedCells();
-            TablePosition tablePosition = (TablePosition)list.get(0);
-            String carrierId = (String)tablePosition.getTableColumn().getCellData("carrierID");
+            //This grabs the info from the API to be stored in database.
+            Flight item = flightTable.getItems().get(flightTable.getSelectionModel().getSelectedIndex());
 
             // Get the username
             String username = Controller.getUsername();
+            int carrierID = item.getCarrierID();
+            String carrier = item.getCarrier();
+            int quote =item.getQuote();
 
             // Save the flight
-            FlightInformation.saveFlight(username, carrierId);
-            System.out.println("Saved flight: {Username:" + username +",CarrierId:" + carrierId + "}");
+            saveFlight(username, carrierID, carrier, quote);
+
         }
         System.out.println("Selected flight: " + selectedIndex);
     }

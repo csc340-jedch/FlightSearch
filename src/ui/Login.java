@@ -1,7 +1,6 @@
 package ui;
 
 import accounts.AccountLogin;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,8 +39,8 @@ public class Login {
         login();
     }
 
-    public void passwordKeyPressed(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
+    public void passwordKeyPressed(KeyEvent _keyEvent) throws IOException {
+        if (_keyEvent.getCode() == KeyCode.ENTER) {
             login();
         }
     }
@@ -50,13 +49,17 @@ public class Login {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
 
+        // Check if username and password is correct
         if (AccountLogin.credentialsAreValid(username, password)) {
-            // Username and password is correct
+            // Update the username in the client
+            Controller.setUsername(username);
 
             if (rememberMeCheckBox.isSelected()) {
+                // Set username and password in local file
                 ConfigManager.writeConfig(username, password);
             }
 
+            // Go to main menu
             Controller controller = Controller.getInstance();
             controller.changePane("menu");
         } else {

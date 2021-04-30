@@ -14,6 +14,7 @@ public class Menu extends ClassLoader {
     public MenuItem logoutMenuOption;
     public MenuItem aboutButton;
     public Button viewSavedFlightsButton;
+    public MenuItem Settings;
     @FXML
     private Button searchFlightButton;
     @FXML
@@ -50,5 +51,10 @@ public class Menu extends ClassLoader {
     public void viewSavedFlights(ActionEvent actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("savedflights");
+    }
+
+    public void SettingsClick(ActionEvent actionEvent) throws IOException {
+        Controller controller = Controller.getInstance();
+        controller.changePane("accountsettings");
     }
 }

@@ -1,6 +1,9 @@
 package ui;
 
+import accounts.AccountSavedFlights;
 import api.Flight;
+import db.ConnectToDB;
+import db.FlightInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +18,10 @@ import java.io.IOException;
 public class SavedFlights {
     public Button exitButton;
     public Button deleteFlightButton;
-    public TableView flightsTableView;
-    public TableColumn carrierIdColumn;
-    public TableColumn carrierColumn;
-    public TableColumn quoteColumn;
+    public TableView<Flight> flightsTableView;
+    public TableColumn<String, String> carrierIdColumn;
+    public TableColumn<String, String> carrierColumn;
+    public TableColumn<String, String> quoteColumn;
 
     @FXML
     protected void initialize() {
@@ -29,10 +32,7 @@ public class SavedFlights {
         carrierColumn.setCellValueFactory(new PropertyValueFactory<>("carrier"));
         quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
 
-        // TODO: Get saved flights
-        Flight flight1 = new Flight(1, "A", 450);
-        Flight flight2 = new Flight(2, "B", 320);
-        Flight[] flights = { flight1, flight2 };
+        Flight[] flights = AccountSavedFlights.getSavedFlights(Controller.getUsername());
 
         // Show the valid flights
         ObservableList<Flight> list = FXCollections.observableArrayList();
@@ -49,7 +49,10 @@ public class SavedFlights {
         int selectedIndex = flightsTableView.getSelectionModel().getSelectedIndex();
 
         if (selectedIndex > -1) {
-            // TODO: Actually remove the saved flight from the database
+            String username = Controller.getUsername();
+            String carrierID = ConnectToDB.getDatabaseValue("flight_table", "username", username, "carrier_id");
+
+            FlightInformation.removeFlight(carrierID,username);
 
             flightsTableView.getItems().remove(selectedIndex);
             Controller.showMessage("Selected flight has successfully been deleted!", "Flight Deleted");
