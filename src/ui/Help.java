@@ -12,7 +12,7 @@ public class Help {
 
     }
 
-    public void backButtonClick(ActionEvent actionEvent) throws IOException {
+    public void backButtonClick(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("menu");
     }

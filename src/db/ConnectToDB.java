@@ -41,24 +41,24 @@ public class ConnectToDB {
         return con;
     }
 
-    public static void insertUpdateDataCon(String query) {
+    public static void insertUpdateDataCon(String _query) {
         //This performs INSERT, UPDATE, and DELETE actions
-        System.out.println(query);
+        System.out.println(_query);
         Statement stmt;
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
-            stmt.executeUpdate(query);
+            stmt.executeUpdate(_query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static int getNumberOfRows(String table, String title, String value) {
+    public static int getNumberOfRows(String _table, String _title, String _value) {
         //This will get the number of rows for a given value
         int retRows = 0;
         Statement stmt;
         ResultSet result;
-        String query = "SELECT COUNT(*) FROM " + table + " WHERE " + title + " = '" + value + "'";
+        String query = "SELECT COUNT(*) FROM " + _table + " WHERE " + _title + " = '" + _value + "'";
 
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
@@ -73,18 +73,18 @@ public class ConnectToDB {
 
     }
 
-    public static String getDatabaseValue(String table, String knownTitle,String knownValue,String unknownTitle) {
+    public static String getDatabaseValue(String _table, String _knownTitle,String _knownValue,String _unknownTitle) {
         //This will return the value from the database that is being searched for
         String retVal = null;
         Statement stmt;
         ResultSet result;
-        String query = "SELECT "+unknownTitle+" FROM " + table + " WHERE " + knownTitle + " = '" + knownValue+ "'";
+        String query = "SELECT "+ _unknownTitle+" FROM " + _table + " WHERE " + _knownTitle + " = '" + _knownValue+ "'";
 
         try (Connection con = testConnect()) {
             stmt = con.createStatement();
             result = stmt.executeQuery(query);
             while (result.next()) {
-                retVal = result.getString(unknownTitle);
+                retVal = result.getString(_unknownTitle);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,18 +92,18 @@ public class ConnectToDB {
         return retVal;
     }
 
-    public static String constructInsertQueryString(String table, String[] values) {
+    public static String constructInsertQueryString(String _table, String[] _values) {
         //This will construct the string for insertions
-        String clientData = String.join(ConnectToDB.DELIMINATOR, values);
-        if(table.equals("flight_table")){
-            return "INSERT INTO " + table +" VALUES (DEFAULT, '" + clientData + "')";
+        String clientData = String.join(ConnectToDB.DELIMINATOR, _values);
+        if(_table.equals("flight_table")){
+            return "INSERT INTO " + _table +" VALUES (DEFAULT, '" + clientData + "')";
         }else
-        return "INSERT INTO " + table +" VALUES ('" + clientData + "')";
+        return "INSERT INTO " + _table +" VALUES ('" + clientData + "')";
     }
 
-    public static void clientUpdate(String table, String changeTitle, String newValue, String knownTitle, String knownValue){
+    public static void clientUpdate(String _table, String _changeTitle, String _newValue, String _knownTitle, String _knownValue){
         //This will update information in the clients table
-        String query = "UPDATE " + table + " SET " + changeTitle + " = '" + newValue + "' WHERE " + knownTitle + " = '"+ knownValue +"'";
+        String query = "UPDATE " + _table + " SET " + _changeTitle + " = '" + _newValue + "' WHERE " + _knownTitle + " = '"+ _knownValue +"'";
         insertUpdateDataCon(query);
     }
 }

@@ -40,12 +40,12 @@ public class SavedFlights {
         flightsTableView.setItems(list);
     }
 
-    public void exit(ActionEvent actionEvent) throws IOException {
+    public void exit(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("menu");
     }
 
-    public void deleteFlight(ActionEvent actionEvent) {
+    public void deleteFlight(ActionEvent _actionEvent) {
         int selectedIndex = flightsTableView.getSelectionModel().getSelectedIndex();
 
         if (selectedIndex > -1) {

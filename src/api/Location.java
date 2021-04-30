@@ -15,8 +15,8 @@ public class Location {
     private static String zipcode;
     private static final int CORRECTARRAYLOCATION = 0;
 
-        public Location(String _zipcode){
-            this.zipcode = _zipcode;
+        public Location(String _zipCode){
+            this.zipcode = _zipCode;
         }
 
         public static JSONObject getLocationInfo(){

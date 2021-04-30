@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage _primaryStage) throws Exception{
         // Create config if not found
         if (!ConfigManager.configExists()) {
             ConfigManager.writeConfig("", "");
@@ -17,10 +17,10 @@ public class Main extends Application {
 
         // Load the main parent window (This will be controlled by the Window class)
         Parent root = FXMLLoader.load(getClass().getResource("/ui/fxml/window.fxml"));
-        primaryStage.setTitle("Flight Search for Displaced LGBTQ+ Minors");
-        primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
+        _primaryStage.setTitle("Flight Search for Displaced LGBTQ+ Minors");
+        _primaryStage.setResizable(false);
+        _primaryStage.setScene(new Scene(root, 600, 400));
+        _primaryStage.show();
     }
 
 

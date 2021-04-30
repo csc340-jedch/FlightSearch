@@ -42,7 +42,7 @@ public class SearchFlight {
         priceColumnColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
     }
 
-    public void searchButtonClicked(ActionEvent actionEvent) throws JSONException, NotDirectFlightException {
+    public void searchButtonClicked(ActionEvent _actionEvent) throws JSONException, NotDirectFlightException {
         // Make sure all fields are filled out
         if (flightDatePicker.getValue() == null || airportComboBox.getValue() == null) {
             ui.Controller.showMessage("Please fill out all flight information.", "Fill out all fields");
@@ -66,12 +66,12 @@ public class SearchFlight {
         }
     }
 
-    public void backButtonClick(ActionEvent actionEvent) throws IOException {
+    public void backButtonClick(ActionEvent _actionEvent) throws IOException {
         Controller controller = Controller.getInstance();
         controller.changePane("menu");
     }
 
-    public void saveFlightClicked(ActionEvent actionEvent) {
+    public void saveFlightClicked(ActionEvent _actionEvent) {
         int selectedIndex = flightTable.getSelectionModel().getSelectedIndex();
 
         if (selectedIndex == -1) {
