@@ -2,6 +2,7 @@ package accounts;
 
 import api.Flight;
 import db.ConnectToDB;
+
 import static db.ConnectToDB.getDatabaseValue;
 
 
@@ -14,7 +15,13 @@ public class AccountSavedFlights {
 
         //This is still getting worked on...
         int count = ConnectToDB.getNumberOfRows("flight_table", "username", _username);
-        int fUuid = Integer.parseInt(getDatabaseValue("flight_table", "username", _username, "flight_uuid"));
+        String uuid = getDatabaseValue("flight_table", "username", _username, "flight_uuid");
+
+        if (uuid == null) {
+            return new Flight[0];
+        }
+
+        int fUuid = Integer.parseInt(uuid);
         Flight[] flights = new Flight[count];
         for (int i = 0; i < count; i++) {
             int carrierID = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier_id"));
