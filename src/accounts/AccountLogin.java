@@ -2,8 +2,6 @@ package accounts;
 
 import db.ConnectToDB;
 
-import java.security.NoSuchAlgorithmException;
-
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
         // Check if the username exists
@@ -12,18 +10,20 @@ public class AccountLogin {
 
             //Commented out the encryption until we figure out the hiccup
             String correctPassword = getPassword(username);
-            System.out.println(correctPassword);
+            System.out.println("correctPassword:" +correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
-            /*String accountSalt = getSalt(username);
+            String accountSalt = getSalt(username);
+            System.out.println("accountSalt:" + accountSalt);
             System.out.println(accountSalt);
-            password = Encryption.getEncryptedPassword(password, accountSalt);*/
+            password = Encryption.getEncryptedPassword(password, accountSalt);
+            System.out.println("password:" + password);
             return password.equals(correctPassword);
         }
         return false;
     }
 
-    public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String zipCode) {
+    public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String gender, String zipCode) {
         // Generate salt for encryption
 
         String salt = Encryption.getRandomSalt();
@@ -33,9 +33,8 @@ public class AccountLogin {
         System.out.println("Encrypted password: " + encryptedPassword);
 
         // Create a row in the database for the client
-        // TODO: Add zipcode to values once Logan updates the database schema
-        int status = 1;
-        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, zipCode, String.valueOf(status)};
+        String status = "1";
+        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, gender, zipCode, status};
         String query = ConnectToDB.constructInsertQueryString("clients", values);
         ConnectToDB.insertUpdateDataCon(query);
     }
@@ -64,6 +63,4 @@ public class AccountLogin {
     private static String getSalt(String username) {
         return ConnectToDB.getDatabaseValue("clients", "username", username, "salt");
     }
-
-
 }

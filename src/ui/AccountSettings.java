@@ -3,10 +3,7 @@ package ui;
 import db.ConnectToDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -23,6 +20,7 @@ public class AccountSettings {
     public TextField zipCodeTextField;
     public DatePicker birthDatePicker;
     public Button saveChangesButton;
+    public ComboBox<String> genderComboBox;
 
     private String username;
     private String password;
@@ -32,9 +30,14 @@ public class AccountSettings {
     private String lastName;
     private String zipCode;
     private String birthDate;
+    private String gender;
 
     @FXML
     protected void initialize() {
+        // Populate gender combobox items
+        String[] genders = { "Male", "Female", "Other" };
+        genderComboBox.getItems().addAll(genders);
+
         // Get user info
         username = Controller.getUsername();
         password = ConnectToDB.getDatabaseValue("clients", "username", username, "password");
@@ -44,6 +47,7 @@ public class AccountSettings {
         lastName = ConnectToDB.getDatabaseValue("clients", "username", username, "last_name");
         //zipCode = ConnectToDB.getDatabaseValue("clients", "username", username, "zipCode");
         birthDate = ConnectToDB.getDatabaseValue("clients", "username", username, "birth_date");
+        gender = ConnectToDB.getDatabaseValue("clients", "username", username, "gender");
 
         usernameTextField.setText(username);
         passwordField.setText(password);
@@ -52,6 +56,7 @@ public class AccountSettings {
         firstNameTextField.setText(firstName);
         lastNameTextField.setText(lastName);
         //zipCodeTextField.setText(zipCode);
+        genderComboBox.setValue(gender);
 
         //LocalDateTime date =
         //birthDatePicker.setValue();
