@@ -59,6 +59,11 @@ public class ConnectToDB {
         int retRows = 0;
         Statement stmt;
         ResultSet result;
+
+        // Escape character incase _value contains an apostrophe.
+        _value = _value.replace("'", "''");
+
+        // Construct the database query.
         String query = "SELECT COUNT(*) FROM " + _table + " WHERE " + _title + " = '" + _value + "'";
 
         try (Connection con = testConnect()) {
@@ -79,6 +84,10 @@ public class ConnectToDB {
         String retVal = null;
         Statement stmt;
         ResultSet result;
+
+        // Escape character incase _value contains an apostrophe.
+        _knownValue = _knownValue.replace("'", "''");
+
         String query = "SELECT "+ _unknownTitle+" FROM " + _table + " WHERE " + _knownTitle + " = '" + _knownValue+ "'";
 
         try (Connection con = testConnect()) {
@@ -103,6 +112,9 @@ public class ConnectToDB {
     }
 
     public static void clientUpdate(String _table, String _changeTitle, String _newValue, String _knownTitle, String _knownValue){
+        // Escape character incase _value contains an apostrophe.
+        _knownValue = _knownValue.replace("'", "''");
+
         //This will update information in the clients table
         String query = "UPDATE " + _table + " SET " + _changeTitle + " = '" + _newValue + "' WHERE " + _knownTitle + " = '"+ _knownValue +"'";
         insertUpdateDataCon(query);
