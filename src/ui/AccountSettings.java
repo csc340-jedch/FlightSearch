@@ -1,5 +1,6 @@
 package ui;
 
+import accounts.AccountLogin;
 import db.ConnectToDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static db.ConnectToDB.clientUpdate;
 
@@ -22,6 +24,7 @@ public class AccountSettings {
     public DatePicker birthDatePicker;
     public Button saveChangesButton;
     public ComboBox<String> genderComboBox;
+    public Button deactivateButton;
 
     private String username;
     private String password;
@@ -123,5 +126,20 @@ public class AccountSettings {
         }
 
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
+    }
+
+    public void deactivateButtonClick(ActionEvent actionEvent) {
+        // Send the user a conformation dialog
+        Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
+        dialog.setTitle("Deactivate Account");
+        dialog.setHeaderText("Deactivate Account Confirmation Dialog");
+        dialog.setContentText("Are you sure you want to deactivate your account? Once done, you will not be able to use this account again.");
+        dialog.getButtonTypes().setAll(ButtonType.YES, ButtonType.CANCEL);
+
+        Optional<ButtonType> response = dialog.showAndWait();
+
+        if (response.get() == ButtonType.YES) {
+            AccountLogin.deactivateAccount(username);
+        }
     }
 }

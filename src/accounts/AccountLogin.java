@@ -63,6 +63,10 @@ public class AccountLogin {
         return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_PASSWORD);
     }
 
+    public static void deactivateAccount(String username) {
+        // TODO: Gene->Logan: This will need to be implemented to deactivate accounts
+    }
+
     private static String getSalt(String username) {
         return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_SALT);
     }
