@@ -64,6 +64,11 @@ public class Location {
         private JSONObject getUsableObject() throws JSONException {
             JSONObject object = getLocationInfo();
             JSONArray array = object.getJSONArray("results");
+
+            if (array.length() == 0) {
+                // There are no results
+                return null;
+            }
             JSONObject stepOne = array.getJSONObject(CORRECTARRAYLOCATION);
             JSONObject stepTwo = stepOne.getJSONObject("geometry");
             return stepTwo.getJSONObject("location");
@@ -71,11 +76,11 @@ public class Location {
 
         public String getLatitude() throws JSONException {
             JSONObject object = getUsableObject();
-            return object.getString("lat");
+            return object != null ? object.getString("lat") : null;
         }
         public String getLongitude() throws JSONException {
             JSONObject object = getUsableObject();
-            return object.getString("lng"); 
+            return object != null ? object.getString("lng") : null;
         }
     }
 /**
