@@ -45,7 +45,7 @@ public class AccountSettings {
         phoneNumber = ConnectToDB.getDatabaseValue("clients", "username", username, "phone");
         firstName = ConnectToDB.getDatabaseValue("clients", "username", username, "first_name");
         lastName = ConnectToDB.getDatabaseValue("clients", "username", username, "last_name");
-        //zipCode = ConnectToDB.getDatabaseValue("clients", "username", username, "zipCode");
+        zipCode = ConnectToDB.getDatabaseValue("clients", "username", username, "zip_code");
         birthDate = ConnectToDB.getDatabaseValue("clients", "username", username, "birth_date");
         gender = ConnectToDB.getDatabaseValue("clients", "username", username, "gender");
 
@@ -55,7 +55,7 @@ public class AccountSettings {
         phoneNumberTextField.setText(phoneNumber);
         firstNameTextField.setText(firstName);
         lastNameTextField.setText(lastName);
-        //zipCodeTextField.setText(zipCode);
+        zipCodeTextField.setText(zipCode);
         genderComboBox.setValue(gender);
 
         //LocalDateTime date =
@@ -108,6 +108,11 @@ public class AccountSettings {
         if (!gender.equals(genderComboBox.getValue())) {
             gender = genderComboBox.getValue();
             clientUpdate("clients","gender", gender, "username", username);
+        }
+
+        if (!gender.equals(zipCodeTextField.getText())) {
+            gender = zipCodeTextField.getText();
+            clientUpdate("clients","zip_code", zipCode, "username", username);
         }
 
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
