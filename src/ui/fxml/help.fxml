@@ -17,12 +17,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="124.0" minHeight="0.0" prefHeight="11.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="297.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="256.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="237.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="124.0" minHeight="0.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="282.0" minHeight="10.0" prefHeight="282.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Help Section" textFill="WHITE" underline="true" GridPane.valignment="TOP">
@@ -33,15 +29,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Header 1&#10;This is a description." textFill="WHITE" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin></Label>
-                  <Label text="Header2&#10;This is a description." textFill="WHITE" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin></Label>
-                  <Label text="Header 3&#10;This is a description." textFill="WHITE" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                  <Label text="1. Search Flights&#10;Search for a flight with a given zip code.&#10;&#10;&#10;2. Saved Flights&#10;View your saved flights." textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin></Label>

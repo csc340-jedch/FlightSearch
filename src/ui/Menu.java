@@ -15,6 +15,7 @@ public class Menu extends ClassLoader {
     public MenuItem aboutButton;
     public Button viewSavedFlightsButton;
     public MenuItem Settings;
+    public javafx.scene.control.Menu accountDropDown;
     @FXML
     private Button searchFlightButton;
     @FXML
@@ -24,6 +25,12 @@ public class Menu extends ClassLoader {
 
     public Menu() {
         System.out.println("Loading menu");
+    }
+
+    @FXML
+    protected void initialize() {
+        // Set the dropdown menu of the person's username.
+        accountDropDown.setText(Controller.getUsername());
     }
 
     public void searchFlightClick(ActionEvent _actionEvent) throws IOException {

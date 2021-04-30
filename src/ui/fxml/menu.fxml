@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -30,8 +31,8 @@
               <menus>
                 <Menu fx:id="accountDropDown" mnemonicParsing="false" text="Account">
                   <items>
-                    <MenuItem fx:id="logoutMenuOption" mnemonicParsing="false" onAction="#logoutMenuOption" text="Logout" />
                         <MenuItem fx:id="Settings" mnemonicParsing="false" onAction="#SettingsClick" text="Settings" />
+                    <MenuItem fx:id="logoutMenuOption" mnemonicParsing="false" onAction="#logoutMenuOption" text="Logout" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -49,6 +50,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label text="Flight Search Program" textFill="WHITE" underline="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Courier New Bold" size="22.0" />
+               </font>
+            </Label>
           </children>
        </GridPane>
    </children>
