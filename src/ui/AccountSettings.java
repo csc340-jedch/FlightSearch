@@ -78,47 +78,47 @@ public class AccountSettings {
         String origUsername = username;
         if (!username.equals(usernameTextField.getText())) {
             username = usernameTextField.getText();
-            clientUpdate("clients","username", username, "username", origUsername);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_USERNAME, origUsername);
         }
 
         // Check if password was changed
         if (!password.equals(passwordField.getText())) {
             password = passwordField.getText();
-            clientUpdate("clients","password",password, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_PASSWORD,password, ConnectToDB.COL_USERNAME, username);
         }
 
         // Check if email was changed
         if (!email.equals(emailTextField.getText())) {
             email = emailTextField.getText();
-            clientUpdate("clients","email", email, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_EMAIL, email, ConnectToDB.COL_USERNAME, username);
         }
 
         // Check if phone number was changed
         if (!phoneNumber.equals(phoneNumberTextField.getText())) {
             phoneNumber = phoneNumberTextField.getText();
-            clientUpdate("clients","phone", phoneNumber, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_PHONE, phoneNumber, ConnectToDB.COL_USERNAME, username);
         }
 
         // Check if first name was changed
         if (!firstName.equals(firstNameTextField.getText())) {
             firstName = firstNameTextField.getText();
-            clientUpdate("clients","first_name", firstName, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_FNAME, firstName, ConnectToDB.COL_USERNAME, username);
         }
 
         // Check if last name was changed
         if (!lastName.equals(lastNameTextField.getText())) {
             lastName = lastNameTextField.getText();
-            clientUpdate("clients","last_name", lastName, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_LNAME, lastName, ConnectToDB.COL_USERNAME, username);
         }
 
         if (!gender.equals(genderComboBox.getValue())) {
             gender = genderComboBox.getValue();
-            clientUpdate("clients","gender", gender, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_GENDER, gender, ConnectToDB.COL_USERNAME, username);
         }
 
-        if (!gender.equals(zipCodeTextField.getText())) {
+        if (!zipCode.equals(zipCodeTextField.getText())) {
             zipCode = zipCodeTextField.getText();
-            clientUpdate("clients","zipCode", zipCode, "username", username);
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_ZIP, zipCode, ConnectToDB.COL_USERNAME, username);
         }
 
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
