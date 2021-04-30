@@ -4,7 +4,6 @@ import api.Flight;
 import db.ConnectToDB;
 
 import static db.ConnectToDB.getDatabaseValue;
-import static db.ConnectToDB.insertUpdateDataCon;
 
 
 public class AccountSavedFlights {

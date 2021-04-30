@@ -128,7 +128,7 @@ public class AccountSettings {
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
     }
 
-    public void deactivateButtonClick(ActionEvent _actionEvent) {
+    public void deactivateButtonClick(ActionEvent _actionEvent) throws IOException {
         // Send the user a conformation dialog
         Alert dialog = new Alert(Alert.AlertType.CONFIRMATION);
         dialog.setTitle("Deactivate Account");
@@ -140,6 +140,10 @@ public class AccountSettings {
 
         if (response.isPresent() && response.get() == ButtonType.YES) {
             AccountManager.deactivateAccount(username);
+
+            // Bring back to login screen
+            Controller controller = Controller.getInstance();
+            controller.changePane("login");
         }
     }
 }
