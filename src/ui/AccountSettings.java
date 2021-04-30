@@ -120,6 +120,11 @@ public class AccountSettings {
             clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_ZIP, zipCode, ConnectToDB.COL_USERNAME, username);
         }
 
+        if (!birthDate.equals(birthDatePicker.getValue().toString())) {
+            birthDate = birthDatePicker.getValue().toString();
+            clientUpdate(ConnectToDB.TBL_CLIENTS,ConnectToDB.COL_BIRTH, birthDate, ConnectToDB.COL_USERNAME, username);
+        }
+
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
     }
 
@@ -133,7 +138,7 @@ public class AccountSettings {
 
         Optional<ButtonType> response = dialog.showAndWait();
 
-        if (response.get() == ButtonType.YES) {
+        if (response.isPresent() && response.get() == ButtonType.YES) {
             AccountManager.deactivateAccount(username);
         }
     }
