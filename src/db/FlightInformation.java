@@ -51,8 +51,8 @@ public class FlightInformation {
 
     public static void saveFlight(String clientUsername, int carrierID, String carrier, int price) {
         //This is will save the flight to the database
-        String[] values = { String.valueOf(clientUsername), String.valueOf(carrierID), String.valueOf(carrier), String.valueOf(price)};
-        String query = ConnectToDB.constructInsertQueryString("flight_table", values);
+        String[] values = { clientUsername, String.valueOf(carrierID), carrier, String.valueOf(price)};
+        String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_FLIGHTS, values);
         ConnectToDB.insertUpdateDataCon(query);
         System.out.println(query);
     }
