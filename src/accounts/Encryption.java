@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 public class Encryption {
     public static String getRandomSalt() {
         // Generate a number from 5 to 9
-        int saltSize = (int)(Math.random() * 5) + 5;
+        int saltSize = (int) (Math.random() * 5) + 5;
 
         // Create byte array of salt size
         byte[] saltBytes = new byte[saltSize];
@@ -16,7 +16,7 @@ public class Encryption {
         // Populate with random bytes
         for (int i = 0; i < saltBytes.length; i++) {
             // Generate ASCII values from 33 to 126
-            saltBytes[i] = (byte)(Math.random() * 93 + 33);
+            saltBytes[i] = (byte) (Math.random() * 93 + 33);
         }
 
         // Return the byte array as a string

@@ -15,7 +15,7 @@ public class GetFlightData implements FlightDataInterface {
     private JSONObject jsonObject;
 
     //Constructor
-    public GetFlightData(String _departureDate, String _originAirport){
+    public GetFlightData(String _departureDate, String _originAirport) {
         findFlightInformation(_departureDate, _originAirport);
     }
 
@@ -35,8 +35,8 @@ public class GetFlightData implements FlightDataInterface {
             url = new URL(finalURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
-            con.setRequestProperty("x-rapidapi-key","1c51e09a6dmshbf06f77f423fa6ap14adfdjsne9e38d557ee6");
-            con.setRequestProperty("x-rapidapi-host","skyscanner-skyscanner-flight-search-v1.p.rapidapi.com" );
+            con.setRequestProperty("x-rapidapi-key", "1c51e09a6dmshbf06f77f423fa6ap14adfdjsne9e38d557ee6");
+            con.setRequestProperty("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com");
 
             //Test URL connection
             int status = con.getResponseCode();
@@ -56,18 +56,11 @@ public class GetFlightData implements FlightDataInterface {
                 in.close();
                 con.disconnect();
 
-                //Parse JSON
-                JSONObject obj = new JSONObject(content.toString());
-                //String quotes = obj.getString("Quotes");
-                //String carriers = obj.getString("Carriers");
-
-                //System.out.println("This is quote: " + quotes + "This is carriers: " + carriers);
-
-                jsonObject = obj;
+                //Parse JSON and save it
+                jsonObject = new JSONObject(content.toString());
             }
-        }
-        catch (Exception e){
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -75,11 +68,11 @@ public class GetFlightData implements FlightDataInterface {
     private String getCarrier(int _index) throws JSONException {
         JSONArray carrierInfoArray = getCarriers();
 
-            JSONObject carrierInfoObject = carrierInfoArray.getJSONObject(_index);
-            String carrierID = carrierInfoObject.getString("CarrierId");
-            int carrierIDInteger = Integer.parseInt(carrierID);
-            if (getCarrierId(0) == carrierIDInteger){
-                return carrierInfoObject.getString("Name");
+        JSONObject carrierInfoObject = carrierInfoArray.getJSONObject(_index);
+        String carrierID = carrierInfoObject.getString("CarrierId");
+        int carrierIDInteger = Integer.parseInt(carrierID);
+        if (getCarrierId(0) == carrierIDInteger) {
+            return carrierInfoObject.getString("Name");
 
         }
         return "getCarrier failed";
@@ -99,7 +92,7 @@ public class GetFlightData implements FlightDataInterface {
         JSONObject carrierInfoObject = quoteInfoArray.getJSONObject(_index);
         JSONObject outboundLeg = carrierInfoObject.getJSONObject("OutboundLeg");
         String idWithBrackets = outboundLeg.getString("CarrierIds");
-        String idWithoutBrackets = idWithBrackets.substring(1,idWithBrackets.length() - 1);
+        String idWithoutBrackets = idWithBrackets.substring(1, idWithBrackets.length() - 1);
         return Integer.parseInt(idWithoutBrackets);
     }
 
@@ -118,8 +111,8 @@ public class GetFlightData implements FlightDataInterface {
         List<Flight> output = new ArrayList<>();
         JSONArray input = getQuotes();
         for (int i = 0; i < input.length(); i++) {
-            JSONObject quotesInfoObject = input.getJSONObject(i);
-            Flight validFlight = new Flight(getCarrierId(i), getCarrier(i),getPrice(i));
+            //JSONObject quotesInfoObject = input.getJSONObject(i);
+            Flight validFlight = new Flight(getCarrierId(i), getCarrier(i), getPrice(i));
             output.add(validFlight);
         }
         return output;

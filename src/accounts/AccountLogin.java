@@ -4,11 +4,10 @@ import db.ConnectToDB;
 import ui.Controller;
 
 public class AccountLogin {
-
     public static boolean credentialsAreValid(String _username, String _password) {
 
         // Check if the username exists
-        if(usernameExists(_username)){
+        if (usernameExists(_username)) {
             // Check the status of the account
             String accountStatus = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, _username, ConnectToDB.COL_STATUS);
 
@@ -19,7 +18,7 @@ public class AccountLogin {
 
             // Get the real password from the database
             String correctPassword = getPassword(_username);
-            System.out.println("correctPassword:" +correctPassword);
+            System.out.println("correctPassword:" + correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
             String accountSalt = getSalt(_username);
@@ -42,7 +41,7 @@ public class AccountLogin {
 
         // Create a row in the database for the client
         String status = "1";
-        String[] values = { _username, encryptedPassword, _email, _phoneNumber, _firstName, _lastName, _birthDate, _zipCode, _gender, salt, status};
+        String[] values = {_username, encryptedPassword, _email, _phoneNumber, _firstName, _lastName, _birthDate, _zipCode, _gender, salt, status};
         String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_CLIENTS, values);
         System.out.println(query);
         ConnectToDB.insertUpdateDataCon(query);
