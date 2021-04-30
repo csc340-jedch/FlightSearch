@@ -16,14 +16,18 @@ public class GetFlightData implements FlightDataInterface {
     private static String departureDate;
     private static String originAirport;
 
+    private static JSONObject jsonObject;
+
     //Constructor
     public GetFlightData(String _departureDate, String _originAirport){
         this.departureDate = _departureDate;
         this.originAirport = _originAirport;
+
+        findFlightInformation();
     }
 
     //API connection
-    public static JSONObject findFlightInformation() {
+    public static void findFlightInformation() {
 
         //URL concatenation
         String baseURl = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US" +
@@ -45,14 +49,16 @@ public class GetFlightData implements FlightDataInterface {
             //Test URL connection
             int status = con.getResponseCode();
             if (status != 200) {
-                System.out.printf("Error: Could not load. Status: " + status);
+                System.out.printf("Error: Could not load. Status: %s", status);
             } else {
                 BufferedReader in = new BufferedReader(new InputStreamReader((con.getInputStream())));
                 String inputLine;
-                StringBuffer content = new StringBuffer();
+                StringBuilder content = new StringBuilder();
                 while ((inputLine = in.readLine()) != null) {
                     content.append(inputLine);
                 }
+
+                System.out.println("content: " + content);
 
                 //Close connection
                 in.close();
@@ -60,18 +66,17 @@ public class GetFlightData implements FlightDataInterface {
 
                 //Parse JSON
                 JSONObject obj = new JSONObject(content.toString());
-                String quotes = obj.getString("Quotes");
-                String carriers = obj.getString("Carriers");
+                //String quotes = obj.getString("Quotes");
+                //String carriers = obj.getString("Carriers");
 
                 //System.out.println("This is quote: " + quotes + "This is carriers: " + carriers);
 
-                return obj;
+                jsonObject = obj;
             }
         }
         catch (Exception e){
             System.out.println(e);
         }
-        return null;
     }
 
     //Retrieves Carrier name
@@ -110,14 +115,12 @@ public class GetFlightData implements FlightDataInterface {
 
     //Retrieves information from the API and returns the "Quotes" section.
     public JSONArray getQuotes() throws JSONException {
-        JSONObject input = findFlightInformation();
-        return input.getJSONArray("Quotes");
+        return jsonObject.getJSONArray("Quotes");
     }
 
     //Retrieves information from the API and returns the "Carriers" section.
     public JSONArray getCarriers() throws JSONException {
-        JSONObject input = findFlightInformation();
-        return input.getJSONArray("Carriers");
+        return jsonObject.getJSONArray("Carriers");
     }
 
     //returns valid, direct flights for a given date and destination
@@ -126,10 +129,10 @@ public class GetFlightData implements FlightDataInterface {
         JSONArray input = getQuotes();
         for (int i = 0; i < input.length(); i++) {
             JSONObject quotesInfoObject = input.getJSONObject(i);
-            if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")) {
+            //if (quotesInfoObject.getString("Direct").equalsIgnoreCase("true")) {
                 Flight validFlight = new Flight(getCarrierId(i), getCarrier(i),getPrice(i));
                 output.add(validFlight);
-            }
+            //}
         }
         return output;
     }
