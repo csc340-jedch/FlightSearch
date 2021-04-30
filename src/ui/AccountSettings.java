@@ -104,6 +104,12 @@ public class AccountSettings {
             lastName = lastNameTextField.getText();
             clientUpdate("clients","last_name", lastName, "username", username);
         }
+
+        if (!gender.equals(genderComboBox.getValue())) {
+            gender = genderComboBox.getValue();
+            clientUpdate("clients","gender", gender, "username", username);
+        }
+
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
     }
 }
