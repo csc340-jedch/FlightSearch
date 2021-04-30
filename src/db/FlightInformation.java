@@ -58,8 +58,7 @@ public class FlightInformation {
     }
 
     public static void removeFlight(String _carrierID, String _username) {
-        //Not tested yet. Wanted to get save function right first.
-        //String fUuid
+        //Removes flight from the database
         String query = "DELETE FROM flight_table WHERE carrier_id = '" + _carrierID + "' AND username = '" + _username + "'";
         ConnectToDB.insertUpdateDataCon(query);
     }
