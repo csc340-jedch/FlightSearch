@@ -38,7 +38,7 @@ public class ClosestAirport {
             // Examine the response code.
             int status = con.getResponseCode();
             if (status != 200) {
-                System.out.printf("Error: Could not load movie: " + status);
+                System.out.printf("Error: Could not load movie: %s", status);
             } else {
                 // Parsing input stream into a text string.
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
