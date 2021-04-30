@@ -18,7 +18,6 @@ public class AccountLogin {
             // Get the account salt to encrypt the password given, so we can compare
             String accountSalt = getSalt(username);
             System.out.println("accountSalt:" + accountSalt);
-            System.out.println(accountSalt);
             password = Encryption.getEncryptedPassword(password, accountSalt);
             System.out.println("password:" + password);
             return password.equals(correctPassword);
@@ -37,7 +36,7 @@ public class AccountLogin {
 
         // Create a row in the database for the client
         String status = "1";
-        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, zipCode, gender, salt, status};
+        String[] values = { username, encryptedPassword, email, phoneNumber, firstName, lastName, birthDate, zipCode, gender, salt, status};
         String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_CLIENTS, values);
         System.out.println(query);
         ConnectToDB.insertUpdateDataCon(query);

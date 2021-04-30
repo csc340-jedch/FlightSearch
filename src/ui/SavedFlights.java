@@ -2,6 +2,7 @@ package ui;
 
 import accounts.AccountSavedFlights;
 import api.Flight;
+import db.ConnectToDB;
 import db.FlightInformation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,6 +50,10 @@ public class SavedFlights {
 
         if (selectedIndex > -1) {
             // TODO: Actually remove the saved flight from the database
+            String username = Controller.getUsername();
+            String carrierID = ConnectToDB.getDatabaseValue("flight_table", "username", username, "carrier_id");
+
+            FlightInformation.removeFlight(carrierID,username);
 
             flightsTableView.getItems().remove(selectedIndex);
             Controller.showMessage("Selected flight has successfully been deleted!", "Flight Deleted");
