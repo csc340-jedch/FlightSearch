@@ -79,12 +79,8 @@ public class SearchFlight {
         } else {
             Controller.showMessage("Your flight has been saved.", "Flight saved");
 
-
-
             //This grabs the info from the API to be stored in database.
             Flight item = flightTable.getItems().get(flightTable.getSelectionModel().getSelectedIndex());
-
-
 
             // Get the username
             String username = Controller.getUsername();
