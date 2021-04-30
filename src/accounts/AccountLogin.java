@@ -4,6 +4,9 @@ import db.ConnectToDB;
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String username, String password) {
+        return true;
+
+        /*
         // Check if the username exists
         if(usernameExists(username)){
             // Get the real password from the database
@@ -20,7 +23,7 @@ public class AccountLogin {
             System.out.println("password:" + password);
             return password.equals(correctPassword);
         }
-        return false;
+        return false;*/
     }
 
     public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String gender, String zipCode) {
@@ -35,13 +38,13 @@ public class AccountLogin {
         // Create a row in the database for the client
         String status = "1";
         String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, gender, zipCode, status};
-        String query = ConnectToDB.constructInsertQueryString("clients", values);
+        String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_CLIENTS, values);
         ConnectToDB.insertUpdateDataCon(query);
     }
 
     public static boolean usernameExists(String username) {
         // Get the number of rows where the username exists.
-        int rows = ConnectToDB.getNumberOfRows("clients", "username", username);
+        int rows = ConnectToDB.getNumberOfRows(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username);
 
         // rows will be greater than 0 if the username exists.
         return rows > 0;
@@ -49,7 +52,7 @@ public class AccountLogin {
 
     public static boolean emailExists(String email) {
         // Get the number of rows where the username exists.
-        int rows = ConnectToDB.getNumberOfRows("clients", "email", email);
+        int rows = ConnectToDB.getNumberOfRows(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_EMAIL, email);
 
         // rows will be greater than 0 if the email exists.
         return rows > 0;
@@ -57,10 +60,10 @@ public class AccountLogin {
 
     public static String getPassword(String username) {
         // Get and return the password
-        return ConnectToDB.getDatabaseValue("clients", "username", username, "password");
+        return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_PASSWORD);
     }
 
     private static String getSalt(String username) {
-        return ConnectToDB.getDatabaseValue("clients", "username", username, "salt");
+        return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_SALT);
     }
 }

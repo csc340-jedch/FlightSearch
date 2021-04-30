@@ -32,7 +32,7 @@ public class SearchFlight {
     @FXML
     protected void initialize() {
         // Populate the departure airport combobox
-        String zip = ConnectToDB.getDatabaseValue("clients", "username", Controller.getUsername(), "zipCode");
+        String zip = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, Controller.getUsername(), ConnectToDB.COL_ZIP);
         String[] airports = GetFlightData.getLocalAirports(zip);
         airportComboBox.getItems().addAll(airports);
 

@@ -40,14 +40,14 @@ public class AccountSettings {
 
         // Get user info
         username = Controller.getUsername();
-        password = ConnectToDB.getDatabaseValue("clients", "username", username, "password");
-        email = ConnectToDB.getDatabaseValue("clients", "username", username, "email");
-        phoneNumber = ConnectToDB.getDatabaseValue("clients", "username", username, "phone");
-        firstName = ConnectToDB.getDatabaseValue("clients", "username", username, "first_name");
-        lastName = ConnectToDB.getDatabaseValue("clients", "username", username, "last_name");
-        zipCode = ConnectToDB.getDatabaseValue("clients", "username", username, "zip_code");
-        birthDate = ConnectToDB.getDatabaseValue("clients", "username", username, "birth_date");
-        gender = ConnectToDB.getDatabaseValue("clients", "username", username, "gender");
+        password = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_PASSWORD);
+        email = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_EMAIL);
+        phoneNumber = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_PHONE);
+        firstName = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_FNAME);
+        lastName = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_LNAME);
+        zipCode = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_ZIP);
+        birthDate = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_BIRTH);
+        gender = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_GENDER);
 
         usernameTextField.setText(username);
         passwordField.setText(password);

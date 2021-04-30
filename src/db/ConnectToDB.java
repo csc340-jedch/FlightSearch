@@ -13,6 +13,22 @@ public class ConnectToDB {
     private static final String CONN = "jdbc:mysql://35.237.96.145/jedch_db";
     private static final String DELIMINATOR = "', '";
 
+    // List of all database table names
+    public static final String TBL_CLIENTS = "clients";
+    public static final String TBL_FLIGHTS = "flight_table";
+
+    // TBL_CLIENTS column names
+    public static final String COL_USERNAME = "username";
+    public static final String COL_PASSWORD = "password";
+    public static final String COL_EMAIL = "email";
+    public static final String COL_PHONE = "phone";
+    public static final String COL_FNAME = "first_name";
+    public static final String COL_LNAME = "last_name";
+    public static final String COL_ZIP = "zipCode";
+    public static final String COL_BIRTH = "birth_date";
+    public static final String COL_GENDER = "gender";
+    public static final String COL_SALT = "salt";
+
     private static Connection testConnect() throws SQLException {
         //Attempts the connection
         Connection con = null;

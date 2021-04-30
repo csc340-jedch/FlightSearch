@@ -2,7 +2,6 @@ package accounts;
 
 import api.Flight;
 import db.ConnectToDB;
-import ui.ConfigManager;
 
 import static db.ConnectToDB.getDatabaseValue;
 
@@ -19,13 +18,13 @@ public class AccountSavedFlights {
         //This is still getting worked on...
         int count = ConnectToDB.getNumberOfRows("flight_table", "username", username);
         System.out.println(count);
-        int fUuid = Integer.valueOf(getDatabaseValue("flight_table", "username", username, "flight_uuid"));
+        int fUuid = Integer.parseInt(getDatabaseValue("flight_table", "username", username, "flight_uuid"));
         System.out.println(fUuid);
         Flight[] flights = new Flight[count];
         for( int i = 0; i < count; i++){
-            int carrierID = Integer.valueOf(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier_id"));
+            int carrierID = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier_id"));
             String carrier = getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier");
-            int quote = Integer.valueOf(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "quote"));
+            int quote = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "quote"));
             System.out.println(carrierID + ", " + carrier + ", " + quote);
             flights[i] = new Flight(carrierID, carrier, quote);
             System.out.println(flights[i]);
