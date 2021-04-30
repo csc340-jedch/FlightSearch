@@ -69,6 +69,9 @@ public class Register {
         // We are clear to create the account
         AccountLogin.createAccount(username, password, email, phoneNumber, firstName, lastName, birthDate, gender, zipCode);
 
+        // Set the username of the new account
+        Controller.setUsername(username);
+
         // Go to the main menu
         Controller controller = Controller.getInstance();
         controller.changePane("menu");
