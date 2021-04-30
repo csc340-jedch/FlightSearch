@@ -3,7 +3,7 @@ package accounts;
 import db.ConnectToDB;
 import ui.Controller;
 
-public class AccountLogin {
+public class AccountManager {
     public static boolean credentialsAreValid(String _username, String _password) {
 
         // Check if the username exists

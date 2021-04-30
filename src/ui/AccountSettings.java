@@ -1,6 +1,6 @@
 package ui;
 
-import accounts.AccountLogin;
+import accounts.AccountManager;
 import db.ConnectToDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -134,7 +134,7 @@ public class AccountSettings {
         Optional<ButtonType> response = dialog.showAndWait();
 
         if (response.get() == ButtonType.YES) {
-            AccountLogin.deactivateAccount(username);
+            AccountManager.deactivateAccount(username);
         }
     }
 }
