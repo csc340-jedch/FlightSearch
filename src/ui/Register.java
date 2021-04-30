@@ -41,6 +41,7 @@ public class Register {
 
         String zipCode = zipCodeTextField.getText();
 
+
         if (username.isEmpty() || password.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || zipCode.isEmpty() || birthDatePicker.getValue() == null) {
             Controller.showMessage("Please fill out all fields", "Fill out all information fields");
             return;

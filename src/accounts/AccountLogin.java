@@ -23,7 +23,7 @@ public class AccountLogin {
         return false;
     }
 
-    public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String zipCode) throws NoSuchAlgorithmException {
+    public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String zipCode) {
         // Generate salt for encryption
 
         String salt = Encryption.getRandomSalt();
@@ -34,8 +34,9 @@ public class AccountLogin {
 
         // Create a row in the database for the client
         // TODO: Add zipcode to values once Logan updates the database schema
-        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, zipCode };
-        String query = ConnectToDB.constructClientInsertQueryString("clients", values);
+        int status = 1;
+        String[] values = { username, password, email, phoneNumber, firstName, lastName, birthDate, salt, zipCode, String.valueOf(status)};
+        String query = ConnectToDB.constructInsertQueryString("clients", values);
         ConnectToDB.insertUpdateDataCon(query);
     }
 

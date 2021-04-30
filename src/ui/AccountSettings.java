@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+import static db.ConnectToDB.clientUpdate;
+
 public class AccountSettings {
     public Button BackButton;
     public TextField usernameTextField;
@@ -40,7 +42,7 @@ public class AccountSettings {
         phoneNumber = ConnectToDB.getDatabaseValue("clients", "username", username, "phone");
         firstName = ConnectToDB.getDatabaseValue("clients", "username", username, "first_name");
         lastName = ConnectToDB.getDatabaseValue("clients", "username", username, "last_name");
-        //zipCode = ConnectToDB.getDatabaseValue("clients", "username", username, "zip");
+        //zipCode = ConnectToDB.getDatabaseValue("clients", "username", username, "zipCode");
         birthDate = ConnectToDB.getDatabaseValue("clients", "username", username, "birth_date");
 
         usernameTextField.setText(username);
@@ -62,39 +64,40 @@ public class AccountSettings {
 
     public void saveChangesButtonClick(ActionEvent actionEvent) {
         // Check if username was changed
+        String origUsername = username;
         if (!username.equals(usernameTextField.getText())) {
             username = usernameTextField.getText();
-            // TODO: Update in the database
+            clientUpdate("clients","username", username, "username", origUsername);
         }
 
         // Check if password was changed
         if (!password.equals(passwordField.getText())) {
             password = passwordField.getText();
-            // TODO: Update in the database
+            clientUpdate("clients","password",password, "username", username);
         }
 
         // Check if email was changed
         if (!email.equals(emailTextField.getText())) {
             email = emailTextField.getText();
-            // TODO: Update in the database
+            clientUpdate("clients","email", email, "username", username);
         }
 
         // Check if phone number was changed
         if (!phoneNumber.equals(phoneNumberTextField.getText())) {
             phoneNumber = phoneNumberTextField.getText();
-            // TODO: Update in the database
+            clientUpdate("clients","phone", phoneNumber, "username", username);
         }
 
         // Check if first name was changed
         if (!firstName.equals(firstNameTextField.getText())) {
             firstName = firstNameTextField.getText();
-            // TODO: Update in the database
+            clientUpdate("clients","first_name", firstName, "username", username);
         }
 
         // Check if last name was changed
         if (!lastName.equals(lastNameTextField.getText())) {
             lastName = lastNameTextField.getText();
-            // TODO: Update in the database
+            clientUpdate("clients","last_name", lastName, "username", username);
         }
         Controller.showMessage("Your settings have been updated and saved!", "Settings saved");
     }

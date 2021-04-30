@@ -36,6 +36,7 @@ public class ConnectToDB {
     }
 
     public static int getNumberOfRows(String table, String title, String value) {
+        //This will get the number of rows for a given value
         int retRows = 0;
         Statement stmt;
         ResultSet result;
@@ -55,6 +56,7 @@ public class ConnectToDB {
     }
 
     public static String getDatabaseValue(String table, String knownTitle,String knownValue,String unknownTitle) {
+        //This will return the value from the database that is being searched for
         String retVal = null;
         Statement stmt;
         ResultSet result;
@@ -72,21 +74,19 @@ public class ConnectToDB {
         return retVal;
     }
 
-    /*public static String getFlightRowInfo(String username){
-
-    }*/
-
-    public static String constructFlightInsertQueryString(String table, String[] values) {
+    public static String constructInsertQueryString(String table, String[] values) {
+        //This will construct the string for insertions
         String clientData = String.join(ConnectToDB.DELIMINATOR, values);
-        return "INSERT INTO test_flights VALUES ('" + clientData + "')";
-        //String flightInsert = "INSERT INTO test_flights VALUES ('" + values[0] + "', '" + values[1] + "', '" + values[2] + "', '" + values[3] + "')";
-        //System.out.println(flightInsert);
-        //return flightInsert;
+        if(table.equals("flight_table")){
+            return "INSERT INTO " + table +" VALUES (DEFAULT, '" + clientData + "')";
+        }else
+        return "INSERT INTO " + table +" VALUES ('" + clientData + "')";
     }
 
-    public static String constructClientInsertQueryString(String table, String[] values) {
-        String clientData = String.join(ConnectToDB.DELIMINATOR, values);
-        return "INSERT INTO clients VALUES ('" + clientData + "')";
+    public static void clientUpdate(String table, String changeTitle, String newValue, String knownTitle, String knownValue){
+        //This will update information in the clients table
+        String query = "UPDATE " + table + " SET " + changeTitle + " = '" + newValue + "' WHERE " + knownTitle + " = '"+ knownValue +"'";
+        insertUpdateDataCon(query);
     }
 }
 

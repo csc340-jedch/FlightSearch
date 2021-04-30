@@ -50,23 +50,16 @@ public class FlightInformation {
 
 
     public static void saveFlight(String clientUsername, int carrierID, String carrier, int price) {
-        //This is not working yet. Not sure why but it saves flight as null, null
+        //This is will save the flight to the database
         String[] values = { String.valueOf(clientUsername), String.valueOf(carrierID), String.valueOf(carrier), String.valueOf(price)};
-        String query = ConnectToDB.constructFlightInsertQueryString("test_flights", values);
+        String query = ConnectToDB.constructInsertQueryString("flight_table", values);
         ConnectToDB.insertUpdateDataCon(query);
         System.out.println(query);
     }
 
-    /*public static void saveFlight(String username, String carrierID, String carrierName, String price ) {
-        String form = "', '";
-        String query = "INSERT INTO test_flight VALUES " + "('"+username+form+carrierID+form+carrierName+form+price+"')";
-        QuereyFunk.insertUpdateDataCon(query);
-        }
-     */
-
-    public static void removeFlight(String carrierID, String username) {
+    public static void removeFlight(int carrierID, String username) {
         //Not tested yet. Wanted to get save function right first.
-        String query = "DELETE * FROM flights WHERE carrier_id = '" + carrierID + "' AND user_id = '" + username + "'";
+        String query = "DELETE * FROM flight_table WHERE carrier_id = '" + carrierID + "' AND user_id = '" + username + "'";
         ConnectToDB.insertUpdateDataCon(query);
     }
 }
