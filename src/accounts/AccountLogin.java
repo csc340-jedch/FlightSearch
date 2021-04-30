@@ -3,24 +3,24 @@ package accounts;
 import db.ConnectToDB;
 
 public class AccountLogin {
-    public static boolean credentialsAreValid(String username, String password) {
+    public static boolean credentialsAreValid(String _username, String _password) {
        // return true;
 
 
         // Check if the username exists
-        if(usernameExists(username)){
+        if(usernameExists(_username) && ConnectToDB.getDatabaseValue("clients", "username", _username, "status") != "1"){
             // Get the real password from the database
 
             //Commented out the encryption until we figure out the hiccup
-            String correctPassword = getPassword(username);
+            String correctPassword = getPassword(_username);
             System.out.println("correctPassword:" +correctPassword);
 
             // Get the account salt to encrypt the password given, so we can compare
-            String accountSalt = getSalt(username);
+            String accountSalt = getSalt(_username);
             System.out.println("accountSalt:" + accountSalt);
-            password = Encryption.getEncryptedPassword(password, accountSalt);
-            System.out.println("password:" + password);
-            return password.equals(correctPassword);
+            _password = Encryption.getEncryptedPassword(_password, accountSalt);
+            System.out.println("password:" + _password);
+            return _password.equals(correctPassword);
         }
         return false;
     }
@@ -63,8 +63,8 @@ public class AccountLogin {
         return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_PASSWORD);
     }
 
-    public static void deactivateAccount(String username) {
-        // TODO: Gene->Logan: This will need to be implemented to deactivate accounts
+    public static void deactivateAccount(String _username) {
+        ConnectToDB.clientUpdate("clients", "status", "-1", "username", _username);
     }
 
     private static String getSalt(String username) {
