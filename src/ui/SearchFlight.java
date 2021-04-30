@@ -31,10 +31,18 @@ public class SearchFlight {
     public Button saveFlightButton;
 
     @FXML
-    protected void initialize() throws NoNearbyAirportsException, JSONException {
+    protected void initialize() throws NoNearbyAirportsException, JSONException, IOException {
         // Populate the departure airport combobox
         String zip = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, Controller.getUsername(), ConnectToDB.COL_ZIP);
         String[] airports = GetFlightData.getLocalAirports(zip);
+
+        // We have no airports to use
+        if (airports.length == 0) {
+            Controller.showMessage("No airports found for zip code " + zip + ". Please try a different one in your account settings.", "No airports found");
+            return;
+        }
+
+        // Since there are airports, add them to the combobox
         airportComboBox.getItems().addAll(airports);
 
         // Set column ids
