@@ -15,8 +15,8 @@ public class Controller {
         System.out.println("Loaded ui.Controller");
     }
 
-    public void setMasterPane(AnchorPane anchorPane) {
-        this.anchorPane = anchorPane;
+    public void setMasterPane(AnchorPane _anchorPane) {
+        this.anchorPane = _anchorPane;
     }
 
     public AnchorPane getMasterPane() {
@@ -27,24 +27,24 @@ public class Controller {
         return INSTANCE;
     }
 
-    public void changePane(String fxmlLoad) throws IOException {
+    public void changePane(String _fxmlLoad) throws IOException {
         // Remove existing pane
         anchorPane.getChildren().removeAll();
 
         // Add new pane
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/ui/fxml/" + fxmlLoad + ".fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/ui/fxml/" + _fxmlLoad + ".fxml"));
         anchorPane.getChildren().setAll(pane);
 
-        System.out.println("Changing scene to: " + fxmlLoad);
+        System.out.println("Changing scene to: " + _fxmlLoad);
     }
 
-    public static void showMessage(String infoMessage, String titleBar)
+    public static void showMessage(String _infoMessage, String _titleBar)
     {
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, _infoMessage, _titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public static void setUsername(String username) {
-        Controller.username = username;
+    public static void setUsername(String _username) {
+        Controller.username = _username;
     }
 
     public static String getUsername() {

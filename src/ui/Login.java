@@ -39,8 +39,8 @@ public class Login {
         login();
     }
 
-    public void passwordKeyPressed(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
+    public void passwordKeyPressed(KeyEvent _keyEvent) throws IOException {
+        if (_keyEvent.getCode() == KeyCode.ENTER) {
             login();
         }
     }

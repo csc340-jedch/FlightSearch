@@ -49,7 +49,6 @@ public class SavedFlights {
         int selectedIndex = flightsTableView.getSelectionModel().getSelectedIndex();
 
         if (selectedIndex > -1) {
-            // TODO: Actually remove the saved flight from the database
             String username = Controller.getUsername();
             String carrierID = ConnectToDB.getDatabaseValue("flight_table", "username", username, "carrier_id");
 
