@@ -34,8 +34,7 @@ public class Register {
         controller.changePane("login");
     }
 
-    public void createButtonClick(ActionEvent actionEvent) throws IOException, NoSuchAlgorithmException {
-        // TODO: Create user using database methods
+    public void createButtonClick(ActionEvent _actionEvent) throws IOException, NoSuchAlgorithmException {
 
         String username = usernameTextField.getText();
         String password = passwordField.getText();

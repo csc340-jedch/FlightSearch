@@ -10,15 +10,15 @@ public class AccountSavedFlights {
 
 
 
-    public static Flight[] getSavedFlights(String username) {
+    public static Flight[] getSavedFlights(String _username) {
         // Gene: Logan, we will want to integrate this with the database and get the list of flights for this user
         // Below is an example of what we would need to do.
 
 
         //This is still getting worked on...
-        int count = ConnectToDB.getNumberOfRows("flight_table", "username", username);
+        int count = ConnectToDB.getNumberOfRows("flight_table", "username", _username);
         System.out.println(count);
-        int fUuid = Integer.parseInt(getDatabaseValue("flight_table", "username", username, "flight_uuid"));
+        int fUuid = Integer.parseInt(getDatabaseValue("flight_table", "username", _username, "flight_uuid"));
         System.out.println(fUuid);
         Flight[] flights = new Flight[count];
         for( int i = 0; i < count; i++){

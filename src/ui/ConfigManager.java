@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ConfigManager {
     private final static String CFG = "settings.cfg";
 
-    public static String readSetting(String key) {
+    public static String readSetting(String _key) {
         File file = new File(CFG);
         Scanner scanner;
         try {
@@ -21,7 +21,7 @@ public class ConfigManager {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] arr = line.split("=");
-            if (arr[0].equals(key) && arr.length == 2) {
+            if (arr[0].equals(_key) && arr.length == 2) {
                 scanner.close();
                 return arr[1];
             }
@@ -34,7 +34,7 @@ public class ConfigManager {
         return file.exists();
     }
 
-    public static void writeConfig(String username, String password) {
+    public static void writeConfig(String _username, String _password) {
         File file = new File(CFG);
         PrintWriter writer;
 
@@ -44,9 +44,9 @@ public class ConfigManager {
             e.printStackTrace();
             return;
         }
-        writer.println("username=" + username);
+        writer.println("username=" + _username);
 
-        writer.println("password=" + password);
+        writer.println("password=" + _password);
 
         writer.close();
     }

@@ -49,18 +49,18 @@ public class FlightInformation {
     }
 
 
-    public static void saveFlight(String clientUsername, int carrierID, String carrier, int price) {
+    public static void saveFlight(String _clientUsername, int _carrierID, String _carrier, int _price) {
         //This is will save the flight to the database
-        String[] values = { clientUsername, String.valueOf(carrierID), carrier, String.valueOf(price)};
+        String[] values = { _clientUsername, String.valueOf(_carrierID), _carrier, String.valueOf(_price)};
         String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_FLIGHTS, values);
         ConnectToDB.insertUpdateDataCon(query);
         System.out.println(query);
     }
 
-    public static void removeFlight(String carrierID, String username) {
+    public static void removeFlight(String _carrierID, String _username) {
         //Not tested yet. Wanted to get save function right first.
         //String fUuid
-        String query = "DELETE FROM flight_table WHERE carrier_id = '" + carrierID + "' AND username = '" + username + "'";
+        String query = "DELETE FROM flight_table WHERE carrier_id = '" + _carrierID + "' AND username = '" + _username + "'";
         ConnectToDB.insertUpdateDataCon(query);
     }
 }

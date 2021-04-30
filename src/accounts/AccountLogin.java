@@ -34,49 +34,49 @@ public class AccountLogin {
         return false;
     }
 
-    public static void createAccount(String username, String password, String email, String phoneNumber, String firstName, String lastName, String birthDate, String gender, String zipCode) {
+    public static void createAccount(String _username, String _password, String _email, String _phoneNumber, String _firstName, String _lastName, String _birthDate, String _gender, String _zipCode) {
         // Generate salt for encryption
 
         String salt = Encryption.getRandomSalt();
         System.out.println("Salt: " + salt);
 
-        String encryptedPassword = Encryption.getEncryptedPassword(password, salt);
+        String encryptedPassword = Encryption.getEncryptedPassword(_password, salt);
         System.out.println("Encrypted password: " + encryptedPassword);
 
         // Create a row in the database for the client
         String status = "1";
-        String[] values = { username, encryptedPassword, email, phoneNumber, firstName, lastName, birthDate, zipCode, gender, salt, status};
+        String[] values = { _username, encryptedPassword, _email, _phoneNumber, _firstName, _lastName, _birthDate, _zipCode, _gender, salt, status};
         String query = ConnectToDB.constructInsertQueryString(ConnectToDB.TBL_CLIENTS, values);
         System.out.println(query);
         ConnectToDB.insertUpdateDataCon(query);
     }
 
-    public static boolean usernameExists(String username) {
+    public static boolean usernameExists(String _username) {
         // Get the number of rows where the username exists.
-        int rows = ConnectToDB.getNumberOfRows(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username);
+        int rows = ConnectToDB.getNumberOfRows(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, _username);
 
         // rows will be greater than 0 if the username exists.
         return rows > 0;
     }
 
-    public static boolean emailExists(String email) {
+    public static boolean emailExists(String _email) {
         // Get the number of rows where the username exists.
-        int rows = ConnectToDB.getNumberOfRows(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_EMAIL, email);
+        int rows = ConnectToDB.getNumberOfRows(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_EMAIL, _email);
 
         // rows will be greater than 0 if the email exists.
         return rows > 0;
     }
 
-    public static String getPassword(String username) {
+    public static String getPassword(String _username) {
         // Get and return the password
-        return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_PASSWORD);
+        return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, _username, ConnectToDB.COL_PASSWORD);
     }
 
     public static void deactivateAccount(String _username) {
         ConnectToDB.clientUpdate(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_STATUS, "-1", ConnectToDB.COL_USERNAME, _username);
     }
 
-    private static String getSalt(String username) {
-        return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, username, ConnectToDB.COL_SALT);
+    private static String getSalt(String _username) {
+        return ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, _username, ConnectToDB.COL_SALT);
     }
 }

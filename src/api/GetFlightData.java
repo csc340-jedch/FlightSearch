@@ -153,7 +153,7 @@ public class GetFlightData implements FlightDataInterface {
         return output;
     }
 
-    public static String[] getLocalAirports(String zipcode) {
+    public static String[] getLocalAirports(String _zipCode) {
         // TODO: Gene->Thomas: If you could implement this method that would be great.
         // This should get all airports within a certain zip-code, and return as a String array or list.
 

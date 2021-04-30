@@ -23,18 +23,18 @@ public class Encryption {
         return new String(saltBytes, StandardCharsets.UTF_8);
     }
 
-    public static String getEncryptedPassword(String password, String salt) {
+    public static String getEncryptedPassword(String _password, String _salt) {
         // MD5 hash the salt
-        String md5Salt = md5(salt);
+        String md5Salt = md5(_salt);
 
         // MD5 hash the password
-        String md5Password = md5(password);
+        String md5Password = md5(_password);
 
         // Add the salt to the end of the password and MD5 hash the entire thing one last time
         return md5(md5Password + md5Salt);
     }
 
-    private static String md5(String input) {
+    private static String md5(String _input) {
         // Static getInstance method is called with hashing MD5
         MessageDigest md = null;
         try {
@@ -45,7 +45,7 @@ public class Encryption {
 
         // digest() method is called to calculate message digest
         //  of an input digest() return array of byte
-        byte[] messageDigest = md.digest(input.getBytes());
+        byte[] messageDigest = md.digest(_input.getBytes());
 
         // Convert byte array into signum representation
         BigInteger no = new BigInteger(1, messageDigest);
