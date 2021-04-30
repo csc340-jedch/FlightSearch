@@ -56,18 +56,12 @@ public class GetFlightData implements FlightDataInterface {
                 in.close();
                 con.disconnect();
 
-                //Parse JSON
-                JSONObject obj = new JSONObject(content.toString());
-                //String quotes = obj.getString("Quotes");
-                //String carriers = obj.getString("Carriers");
-
-                //System.out.println("This is quote: " + quotes + "This is carriers: " + carriers);
-
-                jsonObject = obj;
+                //Parse JSON and save it
+                jsonObject = new JSONObject(content.toString());
             }
         }
         catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -118,7 +112,7 @@ public class GetFlightData implements FlightDataInterface {
         List<Flight> output = new ArrayList<>();
         JSONArray input = getQuotes();
         for (int i = 0; i < input.length(); i++) {
-            JSONObject quotesInfoObject = input.getJSONObject(i);
+            //JSONObject quotesInfoObject = input.getJSONObject(i);
             Flight validFlight = new Flight(getCarrierId(i), getCarrier(i),getPrice(i));
             output.add(validFlight);
         }

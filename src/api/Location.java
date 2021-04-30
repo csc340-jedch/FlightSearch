@@ -12,14 +12,14 @@ import java.net.URL;
 
 
 public class Location {
-    private static String zipcode;
+    private final String zipcode;
     private static final int CORRECTARRAYLOCATION = 0;
 
         public Location(String _zipcode){
             this.zipcode = _zipcode;
         }
 
-        public static JSONObject getLocationInfo(){
+        private JSONObject getLocationInfo(){
             // Create a HTTP Connection.
             String baseUrl = "https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=";
             String lastPart = "&language=en";
@@ -42,7 +42,7 @@ public class Location {
                     // Parsing input stream into a text string.
                     BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                     String inputLine;
-                    StringBuffer content = new StringBuffer();
+                    StringBuilder content = new StringBuilder();
                     while ((inputLine = in.readLine()) != null) {
                         content.append(inputLine);
                     }
@@ -51,12 +51,10 @@ public class Location {
                     con.disconnect();
 
                     // Parse that object into a usable Java JSON object.
-                    JSONObject obj = new JSONObject(content.toString());
-                    return obj;
+                    return new JSONObject(content.toString());
                 }
-            } catch (Exception ex) {
-                System.out.println("Error: " + ex);
-
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return null;
         }
@@ -74,11 +72,12 @@ public class Location {
             return stepTwo.getJSONObject("location");
         }
 
-        public String getLatitude() throws JSONException {
+        protected String getLatitude() throws JSONException {
             JSONObject object = getUsableObject();
             return object != null ? object.getString("lat") : null;
         }
-        public String getLongitude() throws JSONException {
+
+        protected String getLongitude() throws JSONException {
             JSONObject object = getUsableObject();
             return object != null ? object.getString("lng") : null;
         }
