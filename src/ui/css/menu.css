@@ -1,0 +1,11 @@
+#searchFlights {
+	-fx-background-image: url("../../../../../res/menu_search.jpg");
+	-fx-background-size: 100%;
+	-fx-background-repeat: no-repeat;
+}
+
+#savedFlights {
+	-fx-background-image: url("../../../../../res/menu_saved.jpg");
+	-fx-background-size: 100%;
+	-fx-background-repeat: no-repeat;
+}
