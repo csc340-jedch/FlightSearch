@@ -1,6 +1,7 @@
 package accounts;
 
 import db.ConnectToDB;
+import ui.Controller;
 
 public class AccountLogin {
     public static boolean credentialsAreValid(String _username, String _password) {
@@ -8,7 +9,15 @@ public class AccountLogin {
 
 
         // Check if the username exists
-        if(usernameExists(_username) && ConnectToDB.getDatabaseValue("clients", "username", _username, "status") != "1"){
+        if(usernameExists(_username)){
+            // Check the status of the account
+            String accountStatus = ConnectToDB.getDatabaseValue(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_USERNAME, _username, ConnectToDB.COL_STATUS);
+
+            if (!accountStatus.equals("1")) {
+                Controller.showMessage("Account has been deactivated.", "Account deactivated");
+                return false;
+            }
+
             // Get the real password from the database
 
             //Commented out the encryption until we figure out the hiccup
@@ -64,7 +73,7 @@ public class AccountLogin {
     }
 
     public static void deactivateAccount(String _username) {
-        ConnectToDB.clientUpdate("clients", "status", "-1", "username", _username);
+        ConnectToDB.clientUpdate(ConnectToDB.TBL_CLIENTS, ConnectToDB.COL_STATUS, "-1", ConnectToDB.COL_USERNAME, _username);
     }
 
     private static String getSalt(String username) {
