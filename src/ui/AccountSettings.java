@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import static db.ConnectToDB.clientUpdate;
 
@@ -64,8 +65,8 @@ public class AccountSettings {
         zipCodeTextField.setText(zipCode);
         genderComboBox.setValue(gender);
 
-        //LocalDateTime date =
-        //birthDatePicker.setValue();
+        LocalDate date = LocalDate.parse(birthDate);
+        birthDatePicker.setValue(date);
     }
 
     public void BackButtonClick(ActionEvent actionEvent) throws IOException {
