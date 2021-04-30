@@ -9,7 +9,6 @@ import static db.ConnectToDB.insertUpdateDataCon;
 public class AccountSavedFlights {
 
 
-
     public static Flight[] getSavedFlights(String _username) {
         // Returns the saved flights for the user
 
@@ -19,7 +18,7 @@ public class AccountSavedFlights {
 
 
         Flight[] flights = new Flight[count];
-        for( int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             int carrierID = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier_id"));
             String carrier = getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "carrier");
             int quote = Integer.parseInt(getDatabaseValue("flight_table", "flight_uuid", String.valueOf(fUuid), "quote"));

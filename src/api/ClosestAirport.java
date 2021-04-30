@@ -11,26 +11,29 @@ import java.net.URL;
 
 public class ClosestAirport {
 
-    private static Location location;
-    private static final String AIRPORTOPTIONS = "4";
+    private final String zipCode;
+    private final int MAX_AIRPORT_OPTIONS = 4;
 
-    public ClosestAirport(Location _location){
-        this.location = _location;
+    public ClosestAirport(String _zipCode) {
+        this.zipCode = _zipCode;
     }
 
 
-    public static JSONArray getAirportInfo() throws JSONException {
+    private JSONArray getAirportInfo() throws JSONException {
+        // Create new location
+        Location loc = new Location(zipCode);
+
         // Create a HTTP Connection.
         String baseUrl = "https://nearby-airport.p.rapidapi.com/airport/nearby?longitude=";
-        String latitude = location.getLatitude();
-        String longitude = location.getLongitude();
+        String latitude = loc.getLatitude();
+        String longitude = loc.getLongitude();
 
         // Check if latitude and longitude are valid before using API.
         if (latitude == null || longitude == null) {
             return null;
         }
 
-        String urlString = baseUrl + longitude + "&latitude=" + latitude + "&limit=" + AIRPORTOPTIONS;
+        String urlString = baseUrl + longitude + "&latitude=" + latitude + "&limit=" + MAX_AIRPORT_OPTIONS;
         URL url;
         try {
             // Make the connection.
@@ -67,7 +70,7 @@ public class ClosestAirport {
         return null;
     }
 
-    public String[] findAirports() throws JSONException, NoNearbyAirportsException {
+    public String[] getLocalAirports() throws JSONException {
         JSONArray array = getAirportInfo();
 
         // If we do not have valid airport info, there is no airport info to show.
@@ -75,9 +78,9 @@ public class ClosestAirport {
             return new String[0];
         }
 
-        String[] airports = new String[Integer.parseInt(AIRPORTOPTIONS)];
+        String[] airports = new String[MAX_AIRPORT_OPTIONS];
 
-        for (int i = 0; i < Integer.parseInt(AIRPORTOPTIONS); i++) {
+        for (int i = 0; i < airports.length; i++) {
             JSONObject object = array.getJSONObject(i);
             airports[i] = object.getString("code");
         }
