@@ -171,8 +171,8 @@
                            <children>
                               <GridPane prefHeight="270.0" prefWidth="560.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="91.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.0" minWidth="10.0" prefWidth="469.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="102.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.0" minWidth="10.0" prefWidth="458.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -180,13 +180,16 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Deactivate" textFill="WHITE">
+                                    <Label text="Deactivate:" textFill="WHITE">
                                        <opaqueInsets>
                                           <Insets />
                                        </opaqueInsets>
                                        <GridPane.margin>
                                           <Insets left="6.0" />
                                        </GridPane.margin>
+                                       <font>
+                                          <Font name="Courier New" size="14.0" />
+                                       </font>
                                     </Label>
                                     <Button fx:id="deactivateButton" mnemonicParsing="false" onAction="#deactivateButtonClick" text="Deactivate Account" GridPane.columnIndex="1" />
                                  </children>
