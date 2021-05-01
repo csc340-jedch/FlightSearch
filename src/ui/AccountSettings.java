@@ -73,6 +73,11 @@ public class AccountSettings {
     }
 
     public void saveChangesButtonClick(ActionEvent _actionEvent) {
+        if (passwordField.getText().isEmpty()) {
+            Controller.showMessage("Please enter a valid password", "Invalid password");
+            return;
+        }
+
         // Check if username was changed
         String origUsername = username;
         if (!username.equals(usernameTextField.getText())) {
