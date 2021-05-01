@@ -30,7 +30,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="1. Search Flights&#10;Search for a flight with a given zip code.&#10;&#10;&#10;2. Saved Flights&#10;View your saved flights." textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label text="1. About the Program&#10;Create an account, search for flights, and save them for future use.&#10;&#10;2. Creators&#10;Thomas Knepshield&#10;Gene Pressinger&#10;Logan Whitfield&#10;&#10;3. Search Flights&#10;Search for a flight with a given zip code. If you have interest in it, save it for later!&#10;&#10;4. Saved Flights&#10;View your saved flights. If you do not want them anymore, you can delete them.&#10;&#10;5. Edit Account&#10;You can edit your account information if needed, just go to your settings." textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin></Label>
